@@ -1,0 +1,78 @@
+.products__settings {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.products__found {
+    font-size: 22px;
+    line-height: 26px;
+}
+
+.product__sort-items {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.products__settings-sort {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    line-height: 26px;
+    background-color: transparent;
+}
+
+.products__settings-sort_icon {
+    margin-left: 10px;
+    width: 26px;
+    height: 25px;
+    display: block;
+    background-image: url(../../assets/select-sort.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.products__settings-switcher {
+    display: flex;
+    align-items: center;
+}
+
+.products__settings-switcher-icon {
+    display: block;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.products__settings-switcher-icon_column {
+    width: 18px;
+    height: 15px;
+    background-image: url(../../assets/switcher-column.svg);
+}
+
+.products__settings-switcher-icon_row {
+    width: 18px;
+    height: 18px;
+    background-image: url(../../assets/switcher-row.svg);
+}
+
+.products__settings-switcher {
+    padding: 3px;
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+.products__settings-switcher-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 29px;
+    border-radius: 40%;
+    background: transparent;
+}
+
+.products__settings-switcher-btn_active {
+    background: #F6F5EF;
+}

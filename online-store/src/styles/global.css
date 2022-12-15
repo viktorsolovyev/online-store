@@ -9,6 +9,10 @@ body {
     background-color: #F7F6F0;
 }
 
+main {
+    padding-top: 45px;
+}
+
 .container {
     max-width: 1700px;
     margin-left: auto;
