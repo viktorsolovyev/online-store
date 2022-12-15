@@ -12,7 +12,7 @@ const StorePage = () => {
         <div className="products__container">
           <ul className="products__list">
             {totalProducts.map(product => 
-              <ProductCart product={product}/>
+              <ProductCart key={product.id} product={product}/>
             )}
           </ul>
         </div>
