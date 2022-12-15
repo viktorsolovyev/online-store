@@ -2,9 +2,9 @@ import AppNavigation from "./components/AppNavigation"
 
 const App = () => {
   return (
-    <div>
+    <main>
       <AppNavigation/>
-    </div>
+    </main>
   )
 }
 

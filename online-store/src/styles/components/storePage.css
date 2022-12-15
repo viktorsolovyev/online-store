@@ -1,0 +1,15 @@
+.store__container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.products__container {
+    width: 100%;
+    max-width: 1241px;
+}
+
+.products__list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

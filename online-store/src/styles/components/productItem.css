@@ -1,0 +1,144 @@
+.product__item {
+    flex-grow: 1;
+    max-width: 401px;
+    padding: 20px;
+    border-radius: 40px;
+    background-color: #fff;
+}
+
+.card__header {
+    position: relative;
+}
+
+.card__image {
+    width: 100%;
+    max-width: 361px;
+    height: 282px;
+    border-radius: 40px;
+}
+
+.card__sale {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 70px;
+    height: 31px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #FF6265;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    color: #fff;
+}
+
+.card__content {
+    margin-top: 15px;
+}
+
+.card__brand {
+    font-size: 22px;
+    line-height: 26px;
+    color: rgba(28, 28, 28, 0.4);
+}
+
+.card__title {
+    margin-top: 2px;
+    font-size: 28px;
+    line-height: 33px;
+}
+
+.card__info {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.card__rating {
+    display: flex;
+    align-items: center;
+}
+
+.card__raiting-icon {
+    display: block;
+    width: 20px;
+    height: 19px;
+    background-image: url(../../assets/raiting.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+
+.card__rating-number {
+    margin-top: 3px;
+    margin-left: 6px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FF6265;
+}
+
+.card__stock {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: rgba(28, 28, 28, 0.8);
+}
+
+.card__description {
+    margin-top: 15px;
+    font-size: 16px;
+    line-height: 19px;
+    color: rgba(28, 28, 28, 0.6);
+}
+
+.card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.card__price-sale {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.card__price-main {
+    font-size: 28px;
+    line-height: 33px;
+}
+
+.card__price-prev {
+    font-size: 18px;
+    line-height: 21px;
+    text-decoration-line: line-through;
+    color: rgba(28, 28, 28, 0.4);
+}
+
+.card__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #1C1C1C;
+}
+
+.card__btn-icon {
+    display: block;
+    width: 100%;
+    max-width: 16px;
+    height: 20px;
+    background-image: url(../../assets/add-to-cart.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
