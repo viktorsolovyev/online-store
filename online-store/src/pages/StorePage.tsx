@@ -8,12 +8,19 @@ import '../styles/components/storePage.css';
 const StorePage = () => {
   const totalProducts = useSelector(getAllProducts);
   const [isRow, setIsRow] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <div className="container store__container">
         <aside>Filters</aside>
         <div className="products__container">
-          <ProductsSettings isRow={isRow} setIsRow={setIsRow} amount={totalProducts.length}/>
+          <ProductsSettings 
+            modalOpen={modalOpen}
+            setModalIsOpen={setModalOpen}
+            isRow={isRow}
+            setIsRow={setIsRow}
+            amount={totalProducts.length}
+          />
           <ProductsList totalProducts={totalProducts} isRow={isRow}/>
         </div>
     </div>
