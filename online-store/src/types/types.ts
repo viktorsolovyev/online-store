@@ -10,3 +10,8 @@ export type IProduct = {
     stock: number,
     description: string,
 }
+
+export type ICategories = {
+    id: number,
+    categoryName: string,
+}

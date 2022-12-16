@@ -74,9 +74,7 @@ const initialState: MainProductsProps = {
 const productSlice = createSlice({
     name: 'products',
     initialState,
-    reducers: {
-
-    }
+    reducers: {},
 })
 
 export const getAllProducts = ((state: RootState) => state.products.products);
