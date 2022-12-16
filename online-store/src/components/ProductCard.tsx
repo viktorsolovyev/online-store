@@ -5,11 +5,12 @@ import '../styles/components/productItem.css';
 
 interface ProductCartProps {
   product: IProduct;
+  isRow: Boolean,
 }
 
-const ProductCart:FC<ProductCartProps> = ({product}) => {
+const ProductCart:FC<ProductCartProps> = ({product, isRow}) => {
   return (
-    <li key={product.id} className="product__item">
+    <li key={product.id} className={!isRow ? 'product__item product__item-column' : 'product__item'}>
       <div className="card__header">
         <img className="card__image" alt={product.brand} src={product.image}/>
         {(product.sale > 0 )

@@ -71,6 +71,7 @@
     height: 29px;
     border-radius: 40%;
     background: transparent;
+    transition: background ease .4s;
 }
 
 .products__settings-switcher-btn_active {
