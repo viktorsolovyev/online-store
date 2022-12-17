@@ -1,4 +1,5 @@
 import { FC } from "react"
+import { useSearchParams } from "react-router-dom";
 import '../styles/components/dropdownModal.css';
 
 interface DropdownModalProps {
@@ -15,6 +16,7 @@ type ISort = {
 }
 
 const DropdownModal: FC<DropdownModalProps> = ({setModalIsOpen, modalOpen, sortBy, setSortBy}) => {
+  const [searchQuery, setSearchQuery] = useSearchParams();
 
   const sortTypes: ISort[] = [
     {
@@ -50,6 +52,8 @@ const DropdownModal: FC<DropdownModalProps> = ({setModalIsOpen, modalOpen, sortB
   ]
 
   function changeSort(value: string): void {
+    searchQuery.set('filter', value);
+    setSearchQuery(searchQuery);
     setModalIsOpen(false);
     setSortBy(value);
   }

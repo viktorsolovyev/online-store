@@ -15,10 +15,11 @@ interface ProductSettingsProps {
 
 const ProductsSettings:FC <ProductSettingsProps> = ({amount, setIsRow, isRow, modalOpen, setModalIsOpen, sortBy, setSortBy}) => {
 
-  const [, setSwitcherParams] = useSearchParams();
+  const [searchQuery, setSearchQuery] = useSearchParams();
 
   function changeRow() {
-    setSwitcherParams({isRow: `${!isRow}`}); 
+    searchQuery.set('isRow', `${!isRow}`);
+    setSearchQuery(searchQuery); 
     setIsRow(!isRow);
   }
 

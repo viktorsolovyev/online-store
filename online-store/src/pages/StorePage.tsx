@@ -11,11 +11,19 @@ const StorePage = () => {
   const [sortBy, setSortBy] = useState('');
   const [isRow, setIsRow] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
-  const [switcherParams] = useSearchParams();
+  const [searchQuery] = useSearchParams();
 
   useEffect(() => {
-    const param = switcherParams.get('isRow') === 'true' ? true : false;
-    setIsRow(param);
+    if (searchQuery.get('isRow')) {
+      const listType = searchQuery.get('isRow') === 'true' ? true : false;
+      setIsRow(listType);
+    }
+    if (searchQuery.get('filter')) {
+      const filterType = searchQuery.get('filter');
+      if (filterType) {
+        setSortBy(filterType);
+      };
+    }
   }, [])
 
   const sortedProducts = useMemo(() => {
