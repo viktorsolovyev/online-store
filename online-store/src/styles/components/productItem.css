@@ -141,6 +141,11 @@
     height: 46px;
     border-radius: 50%;
     background: #1C1C1C;
+    transition: background ease .4s;
+}
+
+.card__btn:hover {
+    background: #353535;
 }
 
 .card__btn-icon {
