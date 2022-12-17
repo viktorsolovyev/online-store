@@ -24,44 +24,6 @@
     background-color: transparent;
 }
 
-.products__setting-modal {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-    width: 280px;
-    padding: 25px;
-    margin-top: 10px;
-    background: #FFFFFF;
-    box-shadow: 4px 4px 25px rgba(0, 0, 0, 0.15);
-    border-radius: 20px;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    z-index: 50;
-    opacity: 0;
-    visibility: hidden;
-    transition: all ease .4s;
-}
-
-.products__setting-modal_active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.products__setting-modal-item button {
-    font-size: 18px;
-    line-height: 21px;
-    background: transparent;
-}
-
-.products__setting-modal-item {
-    transition: background ease .2s;
-}
-
-.products__setting-modal-item:hover {
-    background: #F7F6F0;
-}
 
 .products__settings-sort_icon {
     margin-left: 10px;

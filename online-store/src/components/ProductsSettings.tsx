@@ -11,6 +11,7 @@ interface ProductSettingsProps {
 }
 
 const ProductsSettings:FC <ProductSettingsProps> = ({amount, setIsRow, isRow, modalOpen, setModalIsOpen}) => {
+
   return (
     <div className="products__settings">
         <h3 className="products__found">Found: {amount}</h3>
