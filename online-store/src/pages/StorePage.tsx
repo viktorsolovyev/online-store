@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { useSearchParams } from 'react-router-dom';
 import { getAllProducts } from "../app/feautures/productsSlice";
@@ -8,14 +8,34 @@ import '../styles/components/storePage.css';
 
 const StorePage = () => {
   const totalProducts = useSelector(getAllProducts);
-  const [switcherParams] = useSearchParams();
+  const [sortBy, setSortBy] = useState('');
   const [isRow, setIsRow] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
+  const [switcherParams] = useSearchParams();
 
   useEffect(() => {
     const param = switcherParams.get('isRow') === 'true' ? true : false;
     setIsRow(param);
   }, [])
+
+  const sortedProducts = useMemo(() => {
+    const copy = [...totalProducts];
+    if (sortBy.length <= 0) return copy;
+    if (sortBy === 'asc') {
+      copy.sort((a,b) => a.price - b.price);
+    } else if (sortBy === 'desc') {
+      copy.sort((a,b) => b.price - a.price);
+    } else if (sortBy === 'raitAsc') {
+      copy.sort((a,b) => a.raiting - b.raiting);
+    } else if (sortBy === 'raitDesc') {
+      copy.sort((a,b) => b.raiting - a.raiting);
+    } else if (sortBy === 'discAsc') {
+      copy.sort((a,b) => a.sale - b.sale);
+    } else if (sortBy === 'discDesc') {
+      copy.sort((a,b) => b.sale - a.sale);
+    }
+    return copy;
+  },[totalProducts, sortBy]);
 
   return (
     <div className="container store__container">
@@ -27,8 +47,10 @@ const StorePage = () => {
             isRow={isRow}
             setIsRow={setIsRow}
             amount={totalProducts.length}
+            sortBy={sortBy}
+            setSortBy={setSortBy}
           />
-          <ProductsList totalProducts={totalProducts} isRow={isRow}/>
+          <ProductsList totalProducts={sortedProducts} isRow={isRow}/>
         </div>
     </div>
   )

@@ -9,26 +9,28 @@ interface ProductSettingsProps {
   modalOpen: boolean,
   setIsRow: Function,
   setModalIsOpen: Function,
+  sortBy: string,
+  setSortBy: Function,
 }
 
-const ProductsSettings:FC <ProductSettingsProps> = ({amount, setIsRow, isRow, modalOpen, setModalIsOpen}) => {
+const ProductsSettings:FC <ProductSettingsProps> = ({amount, setIsRow, isRow, modalOpen, setModalIsOpen, sortBy, setSortBy}) => {
 
   const [, setSwitcherParams] = useSearchParams();
 
   function changeRow() {
+    setSwitcherParams({isRow: `${!isRow}`}); 
     setIsRow(!isRow);
-    setSwitcherParams({isRow: `${isRow}`}); 
   }
 
   return (
     <div className="products__settings">
         <h3 className="products__found">Found: {amount}</h3>
         <div className="product__sort-items">
-        <button onClick={() => setModalIsOpen(!modalOpen)} className="products__settings-sort">
-          Select sort
+        <div className='products__settings-sort-wrapper'>
+          <button onClick={() => setModalIsOpen(!modalOpen)} className="products__settings-sort">Select sort</button>
           <span className="products__settings-sort_icon"></span>
-          <DropdownModal modalOpen={modalOpen}/>
-        </button>
+          <DropdownModal setModalIsOpen={setModalIsOpen} sortBy={sortBy} setSortBy={setSortBy} modalOpen={modalOpen}/>
+        </div>
         <button onClick={changeRow} className="products__settings-switcher">
           <div className={!isRow ? "products__settings-switcher-btn products__settings-switcher-btn_active" : "products__settings-switcher-btn"}>
             <span className="products__settings-switcher-icon products__settings-switcher-icon_column"></span>

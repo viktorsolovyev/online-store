@@ -23,7 +23,7 @@
     visibility: visible;
 }
 
-.products__setting-modal-item {
+.products__setting-modal-item button {
     font-size: 18px;
     line-height: 21px;
     background: transparent;
@@ -31,6 +31,10 @@
 
 .products__setting-modal-item {
     transition: background ease .2s;
+}
+
+.products__setting-modal-item_active {
+    background: #F7F6F0;
 }
 
 .products__setting-modal-item:hover {

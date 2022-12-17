@@ -15,12 +15,15 @@
     gap: 20px;
 }
 
-.products__settings-sort {
+.products__settings-sort-wrapper {
     display: flex;
     align-items: center;
+    position: relative;
+}
+
+.products__settings-sort {
     font-size: 22px;
     line-height: 26px;
-    position: relative;
     background-color: transparent;
 }
 

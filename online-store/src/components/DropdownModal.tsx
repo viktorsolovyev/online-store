@@ -3,17 +3,70 @@ import '../styles/components/dropdownModal.css';
 
 interface DropdownModalProps {
   modalOpen: Boolean,
+  sortBy: string,
+  setSortBy: Function,
+  setModalIsOpen: Function,
 }
 
-const DropdownModal: FC<DropdownModalProps> = ({modalOpen}) => {
+type ISort = {
+  id: number,
+  value: string,
+  title: string,
+}
+
+const DropdownModal: FC<DropdownModalProps> = ({setModalIsOpen, modalOpen, sortBy, setSortBy}) => {
+
+  const sortTypes: ISort[] = [
+    {
+      id: 1,
+      value: 'asc',
+      title: 'Sort by price ASC',
+    },
+    {
+      id: 2,
+      value: 'desc',
+      title: 'Sort by price DESC',
+    },
+    {
+      id: 3,
+      value: 'raitAsc',
+      title: 'Sort by rating ASC',
+    },
+    {
+      id: 4,
+      value: 'raitDesc',
+      title: 'Sort by rating DESC',
+    },
+    {
+      id: 5,
+      value: 'discAsc',
+      title: 'Sort by discount ASC',
+    },
+    {
+      id: 6,
+      value: 'discDesc',
+      title: 'Sort by discount DESC',
+    },
+  ]
+
+  function changeSort(value: string): void {
+    setModalIsOpen(false);
+    setSortBy(value);
+  }
+
   return (
     <ul onClick={(e) => e.stopPropagation()} className={modalOpen ? 'products__setting-modal products__setting-modal_active' : 'products__setting-modal'}>
-      <li className='products__setting-modal-item'>Sort by price ASC</li>
-      <li className='products__setting-modal-item'>Sort by price DESC</li>
-      <li className='products__setting-modal-item'>Sort by rating ASC</li>
-      <li className='products__setting-modal-item'>Sort by rating DESC</li>
-      <li className='products__setting-modal-item'>Sort by discount ASC</li>
-      <li className='products__setting-modal-item'>Sort by discount DESC</li>
+      {sortTypes.map(sort => 
+        <li 
+          key={sort.id}
+          className={sort.value === sortBy 
+            ? 'products__setting-modal-item products__setting-modal-item_active' 
+            : 'products__setting-modal-item'
+          }
+        >
+          <button onClick={() => changeSort(sort.value)} value={sort.value}>{sort.title}</button>
+        </li>
+      )}
   </ul>
   )
 }
