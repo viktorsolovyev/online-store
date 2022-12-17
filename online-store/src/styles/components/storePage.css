@@ -1,6 +1,7 @@
 .store__container {
     display: flex;
     justify-content: space-between;
+    gap: 19px;
 }
 
 .products__container {
@@ -11,12 +12,26 @@
 .products__list {
     margin-top: 25px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    column-gap: 19px;
     row-gap: 25px;
 }
 
 .products__list-column {
     flex-direction: column;
+}
+
+.filters {
+    width: 100%;
+    max-width: 20.83vw;
+    height: 900px;
+    background-color: #fff;
+    border-radius: 40px;
+}
+
+@media (max-width: 576px) {
+    .products__list {
+        margin-top: 15px;
+    }
 }

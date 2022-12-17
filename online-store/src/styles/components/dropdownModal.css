@@ -40,3 +40,19 @@
 .products__setting-modal-item:hover {
     background: #F7F6F0;
 }
+
+
+@media (max-width: 567px)  {
+    .products__setting-modal {
+        gap: 2.65vw;
+        width: 49.38vw;
+        padding: 4.41vw;
+        margin-top: 1.76vw;
+        box-shadow: 0.71vw 0.71vw 4.41vw rgb(0 0 0 / 15%);
+        border-radius: 3.53vw;
+    }
+    .products__setting-modal-item button {
+        font-size: 3.17vw;
+        line-height: 3.70vw;  
+    }
+}

@@ -1,9 +1,10 @@
 .product__item {
     flex-grow: 1;
-    max-width: 401px;
+    max-width: 20.89vw;
     padding: 20px;
     border-radius: 40px;
     background-color: #fff;
+    box-shadow: 4px 4px 25px rgba(0, 0, 0, 0.05);
 }
 
 .product__item-column {
@@ -57,7 +58,7 @@
 
 .card__title {
     margin-top: 2px;
-    font-size: 28px;
+    font-size: 1.46vw; /* 28px */
     line-height: 33px;
 }
 
@@ -151,4 +152,138 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-color: transparent;
+}
+
+
+@media (max-width: 1325px) {
+    .product__item {
+        max-width: 32.38vw; /* 429px */
+    }
+    .card__header  {
+        max-width: 389px;
+    }
+    .card__title {
+        font-size: 2.11vw;
+    }
+    .product__item-column {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 884px) {
+    .product__item {
+        max-width: 100%;
+    }
+    .card__header  {
+        max-width: 100%;
+    }
+    .card__title {
+        font-size: 28px;
+    }
+    .product__item-column {
+        align-items: start;
+    }
+    .product__item-column .card__header {
+        flex-shrink: 0;
+        max-width: 22.62vw;
+        height: 22.62vw;
+    }
+    .product__item-column .card__image {
+        height: 22.62vw;
+        border-radius: 10px;
+    }
+    .product__item-column  .card__content {
+        margin-top: 0px;
+    }
+    .card__sale {
+        top: 10px;
+        left: 10px;
+    }
+}
+
+@media (max-width: 567px) {
+    .product__item {
+        padding: 3.53vw;
+        border-radius: 7.05vw;
+        box-shadow: 0.71vw 0.71vw 4.41vw rgb(0 0 0 / 5%);
+    }
+    .card__content {
+        margin-top: 2.65vw;
+    }
+    .card__header {
+        height: 49.74vw;
+    }
+    .card__image {
+        height: 49.74vw;
+        border-radius: 7.05vw;
+    }
+    .product__item-column {
+        gap: 3.53vw;
+    }
+    .product__item-column .card__image {
+        border-radius: 1.76vw;
+    }
+    .card__sale {
+        max-width: 12.35vw;
+        height: 5.47vw;
+        top: 1.76vw;
+        left: 1.76vw;
+        border-radius: 0.71vw;
+        font-size: 3.17vw;
+        line-height: 3.70vw;
+    }
+    .card__brand {
+        font-size: 3.88vw;
+        line-height: 4.59vw;
+    }
+    .card__title {
+        margin-top: 0.35vw;
+        font-size: 4.94vw;
+        line-height: 5.82vw;
+    }
+    .card__info {
+        gap: 0.88vw;
+        margin-top: 1.76vw;
+    }
+    .card__raiting-icon {
+        width: 3.53vw;
+        height: 3.35vw;
+    }
+    .card__rating-number {
+        margin-top: 0.53vw;
+        margin-left: 1.06vw;
+        font-size: 2.82vw;
+        line-height: 3.35vw;
+    }
+    .card__stock {
+        font-size: 2.82vw;
+        line-height: 3.35vw;
+    }
+    .card__description {
+        margin-top: 2.65vw;
+        font-size: 2.82vw;
+        line-height: 3.35vw;
+    }
+    .card__footer {
+        margin-top: 2.65vw;
+    }
+    .card__price-sale {
+        gap: 1.06vw;
+    }
+    .card__price-main {
+        font-size: 4.94vw;
+        line-height: 5.82vw;
+    }
+    .card__price-prev {
+        font-size: 3.17vw;
+        line-height: 3.70vw;
+    }
+    .card__btn {
+        max-width: 8.11vw;
+        height: 8.11vw;
+    }
+    .card__btn-icon {
+        max-width: 2.82vw;
+        height: 3.53vw;
+    }
 }

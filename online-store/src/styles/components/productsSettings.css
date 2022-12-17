@@ -82,3 +82,38 @@
 .products__settings-switcher-btn_active {
     background: #F6F5EF;
 }
+
+@media (max-width: 567px) {
+    .products__found {
+        font-size: 3.88vw;
+        line-height: 4.59vw;
+    }
+    .products__settings-sort {
+        font-size: 3.88vw;
+        line-height: 4.59vw;
+    }
+    .product__sort-items {
+        gap: 3.53vw;
+    }
+    .products__settings-sort_icon {
+        margin-left: 1.76vw;
+        width: 4.59vw;
+        height: 4.41vw;
+    }
+    .products__settings-switcher {
+        padding: 0.53vw;
+        border-radius: 3.53vw;
+    }
+    .products__settings-switcher-btn {
+        width: 6.70vw;
+        height: 5.11vw;
+    }
+    .products__settings-switcher-icon_column {
+        width: 3.17vw;
+        height: 2.65vw;
+    }
+    .products__settings-switcher-icon_row {
+        width: 3.17vw;
+        height: 3.17vw  ;
+    }
+}

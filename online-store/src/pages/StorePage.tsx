@@ -47,7 +47,7 @@ const StorePage = () => {
 
   return (
     <div className="container store__container">
-        <aside>Filters</aside>
+        <aside className="filters">Filters</aside>
         <div className="products__container">
           <ProductsSettings 
             modalOpen={modalOpen}
