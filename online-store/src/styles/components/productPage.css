@@ -8,14 +8,22 @@
 }
 
 .product__pagi-item {
+    display: flex;
+    align-items: center;
     font-size: 22px;
     line-height: 26px;
     color: #1C1C1C;
 }
 
 .product__pagi-item:not(:last-child)::after {
-    content: url('../../assets/arrow-pagi.svg');
+    content: '';
+    display: block;
+    width: 7px;
+    height: 12px;
     margin-left: 15px;
+    background-image: url(../../assets/arrow-pagi.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 .product__content {
@@ -30,8 +38,8 @@
 
 .product__content-image {
     width: 100%;
-    max-width: 760px;
-    height: 767px;
+    max-width: 39.58vw; /* 760px */
+    height: 39.95vw;  /* 767px */
     background-color: #F5F5F5;
     border-radius: 40px;
 }
@@ -67,4 +75,66 @@
     align-items: center;
     margin-top: 25px;
     gap: 20px;
+}
+
+@media (max-width: 1325px) {
+    .product__content {
+        gap: 40px;
+        flex-direction: column;
+        padding: 45px 40px 40px 40px;
+    }
+    .product__content-image {
+        max-width: 100%;
+        height: auto;
+    }
+    .product__content-description {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 884px) {
+    .product__pagi {
+        gap: 2.60vw;
+    }
+    .product__pagi-item {
+        font-size: 3.82vw;
+        line-height: 4.51vw;
+    }
+    .product__pagi-item:not(:last-child)::after {
+        margin-left: 2.60vw;
+    }
+    .product__content {
+        gap: 6.94vw;
+        margin-top: 6.94vw;
+        padding: 7.81vw 6.94vw 6.94vw 6.94vw;
+        border-radius: 6.94vw;
+    }
+    .product__content-image {
+        border-radius: 6.94vw;
+    }
+    .product__content-brand {
+        font-size: 4.51vw;
+        line-height: 5.21vw;
+    }
+    .product__content-title {
+        font-size: 7.99vw;
+        line-height: 9.38vw;
+    }
+    .product__page-description {
+        margin-top: 3.47vw;
+        font-size: 3.47vw;
+    }
+    .product__page-price {
+        margin-top: 5.21vw;
+    }
+    .product__price-btns {
+        margin-top: 4.34vw;
+        gap: 3.47vw;
+    }
+    .product__pagi-item:not(:last-child)::after {
+        content: '';
+        width: 1.22vw;
+        height: 2.08vw;
+        margin-left: 2.60vw;
+    }
 }

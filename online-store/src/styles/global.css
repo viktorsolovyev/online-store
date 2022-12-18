@@ -41,3 +41,12 @@ main {
         max-width: 88.60vw; /* 1325px */
     }
 }
+
+@media (max-width: 576px) {
+    .btn {
+        padding: 1.91vw 6.60vw;
+        font-size: 3.82vw;
+        line-height: 4.51vw;
+        border-radius: 4.34vw;
+    }
+}
