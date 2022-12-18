@@ -97,8 +97,8 @@
         gap: 2.60vw;
     }
     .product__pagi-item {
-        font-size: 3.82vw;
-        line-height: 4.51vw;
+        font-size: 2.49vw;
+        line-height: 2.94vw;
     }
     .product__pagi-item:not(:last-child)::after {
         margin-left: 2.60vw;

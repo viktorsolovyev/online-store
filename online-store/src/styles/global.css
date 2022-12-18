@@ -27,13 +27,15 @@ main {
     background: #1C1C1C;
     border-radius: 25px;
     border: solid 1px transparent;
-    transition: all ease .4s;
+    transition-property: background, border, color;
+    transition-timing-function: ease;
+    transition-duration: .4s;
 }
 
 .btn:hover {
     color: #1C1C1C;
     border: solid 1px #1C1C1C;
-    background-color: transparent;
+    background: transparent;
 }
 
 @media (max-width: 1325px)  {
@@ -43,6 +45,9 @@ main {
 }
 
 @media (max-width: 576px) {
+    main {
+        padding-top: 7.94vw;
+    }
     .btn {
         padding: 1.91vw 6.60vw;
         font-size: 3.82vw;

@@ -4,20 +4,28 @@ import { Link } from 'react-router-dom';
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 import { getAllProducts } from "../app/feautures/productsSlice";
+import { getAllCategories } from '../app/feautures/categories';
 import { useEffect, useState } from "react";
-import { IProduct } from "../types/types";
+import { IProduct, ICategories } from "../types/types";
 import { getPriceSale } from '../helpers/getSalePrice';
 
 const ItemPage = () => {
 
   const { productId } = useParams();
   const totalProducts = useSelector(getAllProducts);
+  const totalCategories = useSelector(getAllCategories);
+
   const [currentProduct, setCurrentProduct] = useState<IProduct>();
+  const [currentCategory, setCurrentCategory] = useState<ICategories>();
 
   useEffect(() => {
     if (productId) {
-      const finded = totalProducts.find(product => product.id === +productId);
-      setCurrentProduct(finded);
+      const findedProduct = totalProducts.find(product => product.id === +productId);
+      if (findedProduct) {
+        const findedCategory = totalCategories.find(category => category.id === findedProduct.categoryId);
+        setCurrentProduct(findedProduct);
+        setCurrentCategory(findedCategory);
+      }
     }
   }, [])
 
@@ -25,7 +33,7 @@ const ItemPage = () => {
     <div className="container product__container">
       <ul className="product__pagi">
         <Link to="/" className="product__pagi-item">Store</Link>
-        <li className="product__pagi-item">Home</li>
+        <li className="product__pagi-item">{currentCategory?.categoryName}</li>
         <li className="product__pagi-item">{currentProduct?.brand}</li>
       </ul>
       <div className="product__content">
