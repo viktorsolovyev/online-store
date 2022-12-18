@@ -1,4 +1,5 @@
 import { FC } from "react"
+import { Link } from "react-router-dom";
 import { IProduct } from "../types/types";
 import { getPriceSale } from "../helpers/getSalePrice";
 import '../styles/components/productItem.css';
@@ -10,7 +11,7 @@ interface ProductCartProps {
 
 const ProductCart:FC<ProductCartProps> = ({product, isRow}) => {
   return (
-    <li key={product.id} className={!isRow ? 'product__item product__item-column' : 'product__item'}>
+    <Link to={`product/${product.id}`} key={product.id} className={!isRow ? 'product__item product__item-column' : 'product__item'}>
       <div className="card__header">
         <img className="card__image" alt={product.brand} src={product.image}/>
         {(product.sale > 0 )
@@ -42,7 +43,7 @@ const ProductCart:FC<ProductCartProps> = ({product, isRow}) => {
           <button className="card__btn"><span className="card__btn-icon"></span></button>
         </div>
       </div>
-    </li>
+    </Link>
   )
 }
 

@@ -1,0 +1,70 @@
+.product__container {
+    padding-bottom: 60px;
+}
+
+.product__pagi {
+    display: flex;
+    gap: 15px;
+}
+
+.product__pagi-item {
+    font-size: 22px;
+    line-height: 26px;
+    color: #1C1C1C;
+}
+
+.product__pagi-item:not(:last-child)::after {
+    content: url('../../assets/arrow-pagi.svg');
+    margin-left: 15px;
+}
+
+.product__content {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    margin-top: 40px;
+    padding: 65px 60px 60px 60px;
+    background-color: #fff;
+    border-radius: 40px;
+}
+
+.product__content-image {
+    width: 100%;
+    max-width: 760px;
+    height: 767px;
+    background-color: #F5F5F5;
+    border-radius: 40px;
+}
+
+.product__content-brand {
+    font-size: 26px;
+    line-height: 30px;
+}
+
+.product__content-title {
+    font-weight: 300;
+    font-size: 46px;
+    line-height: 54px;
+}
+
+.product__content-description {
+    width: 100%;
+    max-width: 440px;
+}
+
+.product__page-description {
+    margin-top: 20px;
+    font-size: 20px;
+    line-height: 137.69%;
+}
+
+.product__page-price {
+    margin-top: 30px;
+}
+
+.product__price-btns {
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+    gap: 20px;
+}
