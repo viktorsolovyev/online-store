@@ -40,7 +40,7 @@ const ProductCart:FC<ProductCartProps> = ({product, isRow}) => {
             : <div className="card__price-main">{product.price}$</div>
             }
           </div>
-          <button className="card__btn"><span className="card__btn-icon"></span></button>
+          <button onClick={(e) => e.preventDefault()} className="card__btn"><span className="card__btn-icon"></span></button>
         </div>
       </div>
     </Link>
