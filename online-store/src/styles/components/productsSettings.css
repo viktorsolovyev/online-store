@@ -16,8 +16,6 @@
 }
 
 .products__settings-sort-wrapper {
-    display: flex;
-    align-items: center;
     position: relative;
 }
 
@@ -25,14 +23,16 @@
     font-size: 22px;
     line-height: 26px;
     background-color: transparent;
+    display: flex;
+    align-items: center;
 }
 
-
-.products__settings-sort_icon {
-    margin-left: 10px;
-    width: 26px;
-    height: 25px;
+.products__settings-sort::after {
+    content: '';
     display: block;
+    width: 26px;
+    height: 26px;
+    margin-left: 10px;
     background-image: url(../../assets/select-sort.svg);
     background-repeat: no-repeat;
     background-size: contain;
@@ -95,7 +95,8 @@
     .product__sort-items {
         gap: 3.53vw;
     }
-    .products__settings-sort_icon {
+    .products__settings-sort::after {
+        content: '';
         margin-left: 1.76vw;
         width: 4.59vw;
         height: 4.41vw;

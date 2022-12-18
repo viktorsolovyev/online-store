@@ -29,7 +29,6 @@ const ProductsSettings:FC <ProductSettingsProps> = ({amount, setIsRow, isRow, mo
         <div className="product__sort-items">
         <div className='products__settings-sort-wrapper'>
           <button onClick={() => setModalIsOpen(!modalOpen)} className="products__settings-sort">Select sort</button>
-          <span className="products__settings-sort_icon"></span>
           <DropdownModal setModalIsOpen={setModalIsOpen} sortBy={sortBy} setSortBy={setSortBy} modalOpen={modalOpen}/>
         </div>
         <button onClick={changeRow} className="products__settings-switcher">
