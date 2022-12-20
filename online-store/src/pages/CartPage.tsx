@@ -16,7 +16,7 @@ const CartPage = () => {
     const pages = Math.ceil(totalCart.length / perPage);
     if (currentPage > pages) setCurrentPage(currentPage - 1);
     return totalCart.slice((currentPage - 1) * perPage, currentPage * perPage);
-  }, [perPage, currentPage])
+  }, [perPage, currentPage, totalCart])
 
   function decrementPerPage() {
     if (perPage === 1) return;
