@@ -9,6 +9,8 @@ const CartPage = () => {
 
   const totalCart = useSelector(getTotalCart);
 
+  const shipingPrice = 8;
+
   const [perPage, setPerPage] = useState(2);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -37,6 +39,12 @@ const CartPage = () => {
     setCurrentPage(currentPage - 1);
   }
 
+  function getTotalPrice() {
+    let counter = 0;
+    totalCart.map((item) => counter += item.price * item.amount);
+    return counter;
+  }
+
   return (
     <div className="container">
       <div className="cart__content">
@@ -58,7 +66,22 @@ const CartPage = () => {
             <button className='cart__pagination-next' onClick={nextPage}></button>
           </div>
         </div>
-        <div></div>
+        <div className='cart__total'>
+          <div className='cart__total-content'>
+            <h2 className='cart__total-heading'>Total</h2>
+            <div className='cart__total-heading'>${getTotalPrice() + shipingPrice}</div>
+          </div>
+          <ul className='cart__total-list'>
+            <li className='cart__total-item'>
+              <div className='cart__total-info'>Subtotal</div>
+              <div className='cart__total-price'>${getTotalPrice()}</div>
+            </li>
+            <li className='cart__total-item'>
+              <div className='cart__total-info'>Shipping</div>
+              <div className='cart__total-price'>${shipingPrice}</div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   )
