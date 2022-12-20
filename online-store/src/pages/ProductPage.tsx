@@ -2,16 +2,21 @@ import '../styles/components/productPage.css';
 import '../styles/components/productItem.css';
 import { Link } from 'react-router-dom';
 import { useParams } from "react-router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../app/feautures/productsSlice";
 import { getAllCategories } from '../app/feautures/categories';
+import { getTotalCart } from '../app/feautures/cartSlice';
 import { useEffect, useState } from "react";
 import { IProduct, ICategories } from "../types/types";
 import { getPriceSale } from '../helpers/getSalePrice';
+import { addToCart, removeFromCart } from '../app/feautures/cartSlice';
 
 const ItemPage = () => {
 
   const { productId } = useParams();
+  const disptach = useDispatch();
+
+  const totalCart = useSelector(getTotalCart);
   const totalProducts = useSelector(getAllProducts);
   const totalCategories = useSelector(getAllCategories);
 
@@ -29,7 +34,21 @@ const ItemPage = () => {
         setCurrentImage(findedProduct.image);
       }
     }
-  }, [])
+  }, []);
+
+  let findItem;
+
+  if (productId) {
+    findItem = totalCart.find(item => item.id === +productId);
+  }
+
+  function addProduct() {
+    if (currentProduct) disptach(addToCart(currentProduct));
+  }
+
+  function removeProduct() {
+    if (currentProduct) disptach(removeFromCart(currentProduct));
+  }
 
   return (
     <div className="container product__container">
@@ -65,14 +84,18 @@ const ItemPage = () => {
               }
             </div>
             <div className='product__price-btns'>
-              <button className='btn'>Add to cart</button>
+              {
+                findItem 
+                ? <button onClick={removeProduct} className='btn'>Remove from cart</button>
+                : <button onClick={addProduct} className='btn'>Add to cart</button>
+              }
               <button className='btn'>Shop now</button>
             </div>
           </div>
         </div>
         <ul className='product__gallery'>
           {currentProduct?.gallery.map(image => 
-            <button onClick={() => setCurrentImage(image)}><img key={image} className='product__gallery-item' src={image}/></button>
+            <button key={image} onClick={() => setCurrentImage(image)}><img className='product__gallery-item' src={image}/></button>
           )}
         </ul>
       </div>
