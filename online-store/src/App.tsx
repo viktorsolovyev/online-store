@@ -1,13 +1,17 @@
-import AppNavigation from "./components/AppNavigation"
-import ScrollToTop from "./components/ScrollToTop"
+import AppNavigation from "./components/AppNavigation";
+import ScrollToTop from "./components/ScrollToTop";
+import AppHeader from "./components/AppHeader";
 
 const App = () => {
   return (
-    <main>
-      <ScrollToTop/>
-      <AppNavigation/>
-    </main>
-  )
-}
+    <div>
+      <AppHeader />
+      <main>
+        <ScrollToTop />
+        <AppNavigation />
+      </main>
+    </div>
+  );
+};
 
-export default App
+export default App;
