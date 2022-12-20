@@ -95,7 +95,7 @@ const ItemPage = () => {
         </div>
         <ul className='product__gallery'>
           {currentProduct?.gallery.map(image => 
-            <button key={image} onClick={() => setCurrentImage(image)}><img className='product__gallery-item' src={image}/></button>
+            <button key={image} onClick={() => setCurrentImage(image)}><img className='product__gallery-item' alt={currentProduct.title} src={image}/></button>
           )}
         </ul>
       </div>

@@ -1,0 +1,29 @@
+.cart__content {
+  padding: 60px;
+  background-color: #fff;
+  border-radius: 40px;
+}
+
+.cart__content-cart {
+  max-width: 760px;
+}
+
+.cart__content-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart__content-heading {
+  font-weight: 300;
+  font-size: 46px;
+  line-height: 54px;
+}
+
+.cart__content-header-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 28px;
+}
