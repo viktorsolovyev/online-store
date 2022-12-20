@@ -2,6 +2,7 @@ export type IProduct = {
     id: number,
     categoryId: number,
     image: string,
+    gallery: string[],
     title: string,
     brand: string,
     price: number,
