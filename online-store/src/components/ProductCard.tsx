@@ -25,7 +25,7 @@ const ProductCart:FC<ProductCartProps> = ({product, isRow}) => {
 
   function removeProduct(e: MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
-    dispatch(removeFromCart(product));
+    dispatch(removeFromCart(product.id));
   }
 
   return (

@@ -27,3 +27,40 @@
   font-size: 24px;
   line-height: 28px;
 }
+
+.cart__content-perpage {
+  text-align: center;
+  padding: 10px;
+  max-width: 40px;
+  font-size: 18px;
+  border: solid 1px rgba(28, 28, 28, 0.2);;
+}
+
+.cart__content-header-perpage button {
+  font-weight: 300;
+  background: transparent;
+  font-size: 24px;
+}
+
+.cart__pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.cart__pagination button {
+  width: 10px;
+  height: 18px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.cart__pagination-prev {
+  background-image: url(../../assets/prev-btn.svg);
+}
+
+.cart__pagination-next {
+  background-image: url(../../assets/next-btn.svg);
+}

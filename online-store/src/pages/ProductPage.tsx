@@ -47,7 +47,7 @@ const ItemPage = () => {
   }
 
   function removeProduct() {
-    if (currentProduct) disptach(removeFromCart(currentProduct));
+    if (currentProduct) disptach(removeFromCart(currentProduct.id));
   }
 
   return (
