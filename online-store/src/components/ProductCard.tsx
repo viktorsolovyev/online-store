@@ -1,8 +1,11 @@
-import { FC } from "react"
+import '../styles/components/productItem.css';
+import { FC, MouseEvent } from "react"
 import { Link } from "react-router-dom";
 import { IProduct } from "../types/types";
 import { getPriceSale } from "../helpers/getSalePrice";
-import '../styles/components/productItem.css';
+import { addToCart, removeFromCart } from "../app/feautures/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { getTotalCart } from "../app/feautures/cartSlice";
 
 interface ProductCartProps {
   product: IProduct;
@@ -10,6 +13,21 @@ interface ProductCartProps {
 }
 
 const ProductCart:FC<ProductCartProps> = ({product, isRow}) => {
+  const dispatch = useDispatch();
+
+  const totalCart = useSelector(getTotalCart);
+  const inCart = totalCart.find(item => item.id === product.id);
+
+  function addProduct(e: MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    dispatch(addToCart(product));
+  }
+
+  function removeProduct(e: MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    dispatch(removeFromCart(product));
+  }
+
   return (
     <Link to={`product/${product.id}`} key={product.id} className={!isRow ? 'product__item product__item-column' : 'product__item'}>
       <div className="card__header">
@@ -31,7 +49,7 @@ const ProductCart:FC<ProductCartProps> = ({product, isRow}) => {
           <div className="card__stock">{product.stock} in stock</div>
         </div>
         <p className="card__description">
-          {product.description.slice(0,123).trim()}...
+          {product.description.slice(0,110).trim()}...
         </p>
         <div className="card__footer">
           <div className="card__price">
@@ -40,7 +58,11 @@ const ProductCart:FC<ProductCartProps> = ({product, isRow}) => {
             : <div className="card__price-main">{product.price}$</div>
             }
           </div>
-          <button onClick={(e) => e.preventDefault()} className="card__btn"><span className="card__btn-icon"></span></button>
+          {
+            inCart
+            ? <button onClick={(e) => removeProduct(e)} className="card__btn card__btn_active"><span className="card__btn-icon card__btn-icon_active"></span></button>
+            : <button onClick={(e) => addProduct(e)} className="card__btn"><span className="card__btn-icon"></span></button>
+          }
         </div>
       </div>
     </Link>
