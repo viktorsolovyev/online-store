@@ -1,14 +1,7 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/components/header.css";
 
 const AppHeader = () => {
-
-  const [count, SetCount] = useState(0);
-
-  function addCart() {
-    SetCount(count + 1);
-  }
 
   return (
     <header className="header__wrapper">
@@ -23,10 +16,9 @@ const AppHeader = () => {
             type="search"
             placeholder="Find cat"
           />
-        </form>
-        <button onClick={addCart}>+1</button>
+        </form>        
         <Link to="/cart" className="header__cart">          
-          <div className="header__cart-count">{count}</div>
+          <div className="header__cart-count">20</div>
         </Link>
       </div>
     </header>
