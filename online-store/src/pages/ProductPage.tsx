@@ -1,4 +1,4 @@
-import '../styles/components/productPage.css';
+import '../styles/pages/productPage.css';
 import '../styles/components/productItem.css';
 import { Link } from 'react-router-dom';
 import { useParams } from "react-router";

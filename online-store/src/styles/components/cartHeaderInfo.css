@@ -1,0 +1,14 @@
+.cart__content-header-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 28px;
+}
+
+.cart__content-header-perpage button {
+  font-weight: 300;
+  background: transparent;
+  font-size: 24px;
+}

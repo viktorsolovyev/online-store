@@ -1,5 +1,5 @@
-import { FC } from 'react';
 import '../styles/components/productsSettings.css';
+import { FC } from 'react';
 import DropdownModal from './DropdownModal';
 import { useSearchParams } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ const ProductsSettings:FC <ProductSettingsProps> = ({amount, setIsRow, isRow, mo
 
   const [searchQuery, setSearchQuery] = useSearchParams();
 
-  function changeRow() {
+  const changeRow = () => {
     searchQuery.set('isRow', `${!isRow}`);
     setSearchQuery(searchQuery); 
     setIsRow(!isRow);

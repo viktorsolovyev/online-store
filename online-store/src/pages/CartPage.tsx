@@ -1,18 +1,22 @@
-import '../styles/components/cartPage.css';
+import '../styles/pages/cartPage.css';
 import '../styles/components/cartItem.css';
 import { getTotalCart } from '../app/feautures/cartSlice';
 import { useSelector } from 'react-redux';
 import CartPageItem from '../components/CartPageItem';
-import { useMemo, useState } from 'react';
+import { ChangeEvent, useMemo, useState } from 'react';
+import { getPriceSale } from '../helpers/getSalePrice';
+import CartTotalPrice from '../components/CartTotalPrice';
+import CartPagination from '../components/CartPagination';
+import CartHeaderInfo from '../components/CartHeaderInfo';
 
 const CartPage = () => {
 
   const totalCart = useSelector(getTotalCart);
 
-  const shipingPrice = 8;
-
   const [perPage, setPerPage] = useState(2);
+  const [configPromo, setConfigPromo] = useState({shiping: 8, sale: 10})
   const [currentPage, setCurrentPage] = useState(1);
+  const [isPromo, setIsPromo] = useState({sale: false, shiping: false});
 
   const perPageCart = useMemo(() => {
     const pages = Math.ceil(totalCart.length / perPage);
@@ -20,69 +24,58 @@ const CartPage = () => {
     return totalCart.slice((currentPage - 1) * perPage, currentPage * perPage);
   }, [perPage, currentPage, totalCart])
 
-  function decrementPerPage() {
-    if (perPage === 1) return;
-    setPerPage(perPage - 1);
-  }
-
-  function incrementPerPage() {
-    if (perPage === 10) return;
-    setPerPage(perPage + 1);
-  }
-
-  function nextPage() {
-    setCurrentPage(currentPage + 1);
-  }
-
-  function prevPage() {
-    if (currentPage === 1) return;
-    setCurrentPage(currentPage - 1);
-  }
-
   function getTotalPrice() {
     let counter = 0;
     totalCart.map((item) => counter += item.price * item.amount);
+    if (isPromo.sale) counter = getPriceSale(counter, configPromo.sale);
     return counter;
+  }
+
+  function addPromo(e: ChangeEvent<HTMLInputElement>) {
+    if (e.target.value === "RS") setIsPromo({...isPromo, sale: true});
+    if (e.target.value === "EPM") {
+      setConfigPromo({...configPromo, shiping: 0})
+      setIsPromo({...isPromo, shiping: true});
+    }
   }
 
   return (
     <div className="container">
-      <div className="cart__content">
-        <div className='cart__content-cart'>
-          <div className='cart__content-header'>
-            <h2 className='cart__content-heading'>Your order</h2>
-            <div className='cart__content-header-info'>
-              <div className='cart__content-header-perpage'>Per page: <button onClick={decrementPerPage}>-</button> {perPage} <button onClick={incrementPerPage}>+</button></div>
-              <div>Page: {currentPage}</div>
+      {
+        totalCart.length === 0 
+        ?
+        <div className="cart__content">
+          <h2 className='error-message'>Your cart is empty</h2>
+        </div>
+        :
+        <div className="cart__content">
+          <div className='cart__content-cart'>
+            <div className='cart__content-header'>
+              <h2 className='cart__content-heading'>Your order</h2>
+              <CartHeaderInfo
+                perPage={perPage}
+                setPerPage={setPerPage} 
+                currentPage={currentPage}
+              />
             </div>
+            <ul>
+              {perPageCart.map(item => 
+                <CartPageItem key={item.id} product={item}/>
+              )}
+            </ul>
+            <CartPagination
+              setCurrentPage={setCurrentPage}
+              currentPage={currentPage}
+            />
           </div>
-          <ul>
-            {perPageCart.map(item => 
-              <CartPageItem key={item.id} product={item}/>
-            )}
-          </ul>
-          <div className='cart__pagination'>
-            <button className='cart__pagination-prev' onClick={prevPage}></button>
-            <button className='cart__pagination-next' onClick={nextPage}></button>
-          </div>
+          <CartTotalPrice
+            shipingPrice={configPromo.shiping}
+            getTotalPrice={getTotalPrice}
+            addPromo={addPromo}
+            isPromo={isPromo}
+          />
         </div>
-        <div className='cart__total'>
-          <div className='cart__total-content'>
-            <h2 className='cart__total-heading'>Total</h2>
-            <div className='cart__total-heading'>${getTotalPrice() + shipingPrice}</div>
-          </div>
-          <ul className='cart__total-list'>
-            <li className='cart__total-item'>
-              <div className='cart__total-info'>Subtotal</div>
-              <div className='cart__total-price'>${getTotalPrice()}</div>
-            </li>
-            <li className='cart__total-item'>
-              <div className='cart__total-info'>Shipping</div>
-              <div className='cart__total-price'>${shipingPrice}</div>
-            </li>
-          </ul>
-        </div>
-      </div>
+      }
     </div>
   )
 }

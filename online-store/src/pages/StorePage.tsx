@@ -4,7 +4,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { getAllProducts } from "../app/feautures/productsSlice";
 import ProductsSettings from "../components/ProductsSettings";
 import ProductsList from "../components/ProductsList";
-import '../styles/components/storePage.css';
+import '../styles/pages/storePage.css';
 
 const StorePage = () => {
   const totalProducts = useSelector(getAllProducts);

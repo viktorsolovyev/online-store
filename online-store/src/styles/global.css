@@ -38,6 +38,11 @@ main {
     background: transparent;
 }
 
+.error-message {
+    font-size: 34px;
+    line-height: 40px;
+}
+
 @media (max-width: 1325px)  {
     .container {
         max-width: 88.60vw; /* 1325px */

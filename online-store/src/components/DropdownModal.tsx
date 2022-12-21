@@ -1,6 +1,6 @@
+import '../styles/components/dropdownModal.css';
 import { FC } from "react"
 import { useSearchParams } from "react-router-dom";
-import '../styles/components/dropdownModal.css';
 
 interface DropdownModalProps {
   modalOpen: Boolean,
