@@ -20,3 +20,13 @@
 .cart__pagination-next {
   background-image: url(../../assets/next-btn.svg);
 }
+
+@media (max-width: 567px) {
+  .cart__pagination {
+    margin-top: 7.05vw;
+  }
+  .cart__pagination button {
+    width: 1.76vw;
+    height: 3.17vw;
+  }
+}

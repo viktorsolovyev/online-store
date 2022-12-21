@@ -36,3 +36,10 @@
 .promo_active {
   text-decoration: line-through;
 }
+
+@media (max-width: 567px) {
+  .cart__content {
+    padding: 10.58vw;
+    border-radius: 7.05vw;
+  }
+}

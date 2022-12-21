@@ -72,3 +72,53 @@
   padding-left: 117px;
   padding-right: 117px;
 }
+
+@media (max-width: 1625px) {
+  .cart__content {
+    flex-direction: column-reverse;
+  }
+  .cart__total {
+    max-width: 100%;
+    margin-bottom: 50px;
+  }
+}
+
+@media (max-width: 567px) {
+  .cart__total {
+    margin-bottom: 8.82vw;
+  }
+  .cart__total-heading {
+    font-size: 8.11vw;
+    line-height: 9.52vw;
+  }
+  .cart__total-list {
+    gap: 3.53vw;
+    margin-top: 7.05vw;
+    padding-top: 4.41vw;
+    padding-bottom: 4.41vw;
+  }
+  .cart__total-info {
+    font-size: 3.88vw;
+    line-height: 4.59vw;
+  }
+  .cart__total-price {
+    font-size: 3.88vw;
+    line-height: 4.59vw;
+  }
+  .cart__total-promo-input {
+    margin-top: 4.41vw;
+    font-size: 3.53vw;
+    line-height: 4.06vw;
+    padding: 3.17vw;
+  }
+  .cart__total-label {
+    margin-top: 1.76vw;
+    font-size: 2.82vw;
+    line-height: 3.35vw;
+  }
+  .cart__total-btn {
+    margin-top: 5.29vw;
+    padding-left: 20.63vw;
+    padding-right: 20.63vw;
+  }
+}

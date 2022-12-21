@@ -12,3 +12,30 @@
   background: transparent;
   font-size: 24px;
 }
+
+@media (max-width: 800px) {
+  .cart__content-header {
+    flex-direction: column;
+  }
+  .cart__content-header-info {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 567px) {
+  .cart__content-heading {
+    font-size: 8.11vw;
+    line-height: 9.52vw;
+  }
+  .cart__content-header-info {
+    gap: 3.53vw;
+    font-size: 4.23vw;
+    line-height: 28px;
+  }
+  .cart__content-header-info {
+    margin-top: 10px;
+  }
+  .cart__content-header-perpage button {
+    font-size: 4.23vw;
+  }
+}
