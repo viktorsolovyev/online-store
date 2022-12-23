@@ -2,13 +2,21 @@ import '../styles/components/appModal.css';
 import { FC, useState, FormEvent, ChangeEvent } from 'react';
 import { IErrors } from '../types/types';
 import getCardSystem from '../helpers/getCardSystem';
+import { useDispatch } from 'react-redux';
+import { clearCart } from '../app/feautures/cartSlice';
+import { useNavigate } from 'react-router';
 
 interface AppModalProps {
   isOpen: Boolean,
   setIsOpen: Function,
+  orderAccepted: Boolean,
+  setOrderAccepted: Function,
 }
 
-const AppModal= () => {
+const AppModal:FC <AppModalProps>= ({isOpen, setIsOpen, orderAccepted, setOrderAccepted}) => {
+  
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState(
     {
@@ -23,7 +31,7 @@ const AppModal= () => {
       cvv: '',
     }
   );
-  
+
   const [formErrors, setFormErrors] = useState<IErrors>(
     {
       email: false,
@@ -123,12 +131,23 @@ const AppModal= () => {
   }
 
   function submitForm() {
-    console.log('Submited!');
+    dispatch(clearCart());
+    setOrderAccepted(true);
+  }
+
+  function closeModal() {
+    if (orderAccepted) {
+      navigate('/');
+    } else {
+      setIsOpen(false);
+    }
   }
 
   return (  
-    <div className="modal">
-      <form onSubmit={(e) => validateForm(e)} className="modal__content">
+    <div onClick={closeModal} className={isOpen ? 'modal modal_active' : 'modal'}>
+      {!orderAccepted 
+      ?
+      <form onClick={(e) => e.stopPropagation()} onSubmit={(e) => validateForm(e)} className="modal__content">
         <div className='modal__form-block'>
           <h2 className='modal__form-heading'>Contact information</h2>
           <div>
@@ -177,8 +196,14 @@ const AppModal= () => {
         </div>
         <button className='btn'>Continue</button>
       </form>
+      :
+      <div onClick={(e) => e.stopPropagation()} className='modal__content modal__content_order'>
+        <h2 className='modal__content-heading'>Thanks for your order!</h2>
+        <button onClick={closeModal} className='btn'>Continue Shopping</button>
+      </div>
+      }
     </div>
-  )
+  ) 
 }
 
 export default AppModal

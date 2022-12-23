@@ -101,10 +101,13 @@ const cartSlice = createSlice({
     removeAmount(state, action: PayloadAction<Number>) {
       const item = state.cart.find(cartItem => cartItem.id === action.payload);
       if (item) item.amount -= 1;
+    },
+    clearCart(state) {
+      state.cart = [];
     }
   },
 })
 
 export default cartSlice.reducer;
-export const { addToCart, removeFromCart, addAmount, removeAmount }  = cartSlice.actions;
+export const { addToCart, removeFromCart, addAmount, removeAmount, clearCart }  = cartSlice.actions;
 export const getTotalCart = ((state: RootState) => state.cart.cart);

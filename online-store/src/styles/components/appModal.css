@@ -1,5 +1,5 @@
 .modal {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   position: fixed;
@@ -8,6 +8,10 @@
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.4);
+}
+
+.modal_active {
+  display: flex;  
 }
 
 .modal__content {
@@ -71,4 +75,16 @@
 
 .modal__form-card-icon_maestro {
   background-image: url(../../assets/card_maestro.svg);
+}
+
+.modal__content_order {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.modal__content-heading {
+  font-size: 34px;
+  line-height: 40px;
 }

@@ -19,6 +19,9 @@ const CartPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isPromo, setIsPromo] = useState({sale: false, shiping: false});
 
+  const [isOpen, setIsOpen] = useState(false);
+  const [orderAccepted, setOrderAccepted] = useState(false);
+
   const perPageCart = useMemo(() => {
     const pages = Math.ceil(totalCart.length / perPage);
     if (currentPage > pages) setCurrentPage(currentPage - 1);
@@ -74,10 +77,11 @@ const CartPage = () => {
             getTotalPrice={getTotalPrice}
             addPromo={addPromo}
             isPromo={isPromo}
+            setIsOpen={setIsOpen}
           />
         </div>
       }
-      <AppModal/>
+      <AppModal isOpen={isOpen} setIsOpen={setIsOpen} orderAccepted={orderAccepted} setOrderAccepted={setOrderAccepted}/>
     </div>
   )
 }
