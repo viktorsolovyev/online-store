@@ -38,6 +38,20 @@ main {
     background: transparent;
 }
 
+.input {
+    width: 100%;
+    padding: 15px;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.input-small {
+    max-width: 238px;
+}
+
 .error-message {
     font-size: 34px;
     line-height: 40px;

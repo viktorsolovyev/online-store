@@ -1,0 +1,74 @@
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.modal__content {
+  width: 100%;
+  max-width: 600px;
+  padding: 50px 53px;
+  background: #fff;
+  border-radius: 20px;
+}
+
+.modal__form-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__form-block:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.modal__form-heading {
+  margin-bottom: 10px;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 26px;
+}
+
+.modal__form-error {
+  display: block;
+  margin-top: 5px;
+}
+
+.modal__form-double {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal__form-card {
+  position: relative;
+}
+
+.modal__form-card-icon {
+  width: 27px;
+  height: 20px;
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  right: 15px;
+}
+
+.modal__form-card-icon_none {
+  background-image: url(../../assets/card.svg);
+}
+
+.modal__form-card-icon_visa {
+  background-image: url(../../assets/card_visa.svg);
+}
+
+.modal__form-card-icon_mastercard {
+  background-image: url(../../assets/card_mastercard.svg);
+}
+
+.modal__form-card-icon_maestro {
+  background-image: url(../../assets/card_maestro.svg);
+}

@@ -31,3 +31,15 @@ export type ICategories = {
     id: number,
     categoryName: string,
 }
+
+export type IErrors = {
+  email: boolean,
+  firstname: boolean,
+  lastname: boolean,
+  address: boolean,
+  number: boolean,
+  cardNumber: boolean,
+  cardDate: boolean,
+  cvv: boolean,
+}
+  

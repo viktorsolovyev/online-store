@@ -176,6 +176,9 @@
     .product__item {
         max-width: 20.89vw;
     }
+    .product__item-column {
+        max-width: 100%;
+    }
 }
 
 @media (max-width: 1325px) {

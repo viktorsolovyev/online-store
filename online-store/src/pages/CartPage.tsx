@@ -8,6 +8,7 @@ import { getPriceSale } from '../helpers/getSalePrice';
 import CartTotalPrice from '../components/CartTotalPrice';
 import CartPagination from '../components/CartPagination';
 import CartHeaderInfo from '../components/CartHeaderInfo';
+import AppModal from '../components/AppModal';
 
 const CartPage = () => {
 
@@ -76,6 +77,7 @@ const CartPage = () => {
           />
         </div>
       }
+      <AppModal/>
     </div>
   )
 }
