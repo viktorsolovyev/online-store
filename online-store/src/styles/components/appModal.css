@@ -87,3 +87,7 @@
   font-size: 34px;
   line-height: 40px;
 }
+
+.modal__content-description {
+  font-size: 18px;
+}

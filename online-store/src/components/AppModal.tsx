@@ -1,5 +1,5 @@
 import '../styles/components/appModal.css';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { clearCart } from '../app/feautures/cartSlice';
 import AppModalForm from './AppModalForm';
@@ -23,8 +23,21 @@ const AppModal:FC <AppModalProps>= ({isOpen, setIsOpen, orderAccepted, setOrderA
     }
   }
 
+  useEffect(() => {
+    let t;
+    clearInterval(t);
+    if (orderAccepted) {
+      t = setTimeout(() => {
+        if (orderAccepted) {
+          navigate('/');
+          setOrderAccepted(false);
+        }
+      }, 5000);
+    }
+  }, [orderAccepted])
+
   return (  
-    <div onClick={closeModal} className={isOpen ? 'modal modal_active' : 'modal'}>
+    <div onClick={!orderAccepted ? closeModal : undefined} className={isOpen ? 'modal modal_active' : 'modal'}>
       {!orderAccepted 
       ?
       <AppModalForm
@@ -34,7 +47,7 @@ const AppModal:FC <AppModalProps>= ({isOpen, setIsOpen, orderAccepted, setOrderA
       :
       <div onClick={(e) => e.stopPropagation()} className='modal__content modal__content_order'>
         <h2 className='modal__content-heading'>Thanks for your order!</h2>
-        <button onClick={closeModal} className='btn'>Continue Shopping</button>
+        <p className='modal__content-description'>You will be redirected to the main page in a few seconds...</p>
       </div>
       }
     </div>
