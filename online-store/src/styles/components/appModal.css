@@ -56,8 +56,7 @@
   width: 27px;
   height: 20px;
   position: absolute;
-  transform: translateY(-50%);
-  top: 50%;
+  top: 16px;
   right: 15px;
 }
 
