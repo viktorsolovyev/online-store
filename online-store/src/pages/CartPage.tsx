@@ -57,6 +57,10 @@ const CartPage = () => {
     }
   },[])
 
+  function getProductIndex(id: number) {
+    return totalCart.findIndex(item => item.id === id) + 1;
+  }
+
   return (
     <div className="container">
       {
@@ -78,7 +82,7 @@ const CartPage = () => {
             </div>
             <ul>
               {perPageCart.map(item => 
-                <CartPageItem key={item.id} product={item}/>
+                <CartPageItem key={item.id} product={item} index={getProductIndex(item.id)}/>
               )}
             </ul>
             <CartPagination
