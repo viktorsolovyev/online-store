@@ -73,4 +73,10 @@ main {
         line-height: 4.51vw;
         border-radius: 4.34vw;
     }
+    .input {
+        padding: 2.65vw;
+        font-size: 3.17vw;
+        line-height: 3.70vw;
+        border-radius: 0.71vw;
+    }
 }

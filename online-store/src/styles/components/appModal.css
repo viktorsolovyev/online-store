@@ -17,6 +17,7 @@
 .modal__content {
   width: 100%;
   max-width: 600px;
+  margin: 0px 20px;
   padding: 50px 53px;
   background: #fff;
   border-radius: 20px;
@@ -58,6 +59,8 @@
   position: absolute;
   top: 16px;
   right: 15px;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .modal__form-card-icon_none {
@@ -90,4 +93,32 @@
 
 .modal__content-description {
   font-size: 18px;
+}
+
+.modal__form-double {
+  gap: 20px;
+}
+
+@media (max-width: 567px) {
+  .modal__content {
+    max-width: 105.82vw;
+    padding: 8.82vw 9.35vw;
+    border-radius: 3.53vw;
+  }
+
+  .modal__form-block:not(:last-child) {
+    margin-bottom: 3.53vw;
+  }
+
+  .modal__form-heading {
+    margin-bottom: 1.76vw;
+    font-size: 3.88vw;
+    line-height: 4.59vw;
+  } 
+  .modal__form-card-icon {
+    width: 4.76vw;
+    height: 3.53vw;
+    top: 2.82vw;
+    right: 2.65vw;
+  }
 }
