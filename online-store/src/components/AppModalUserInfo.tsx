@@ -8,7 +8,7 @@ interface AppModalUserInfoProps {
   setFormData: Function,
 }
 
-const AppModalUserInfo: FC <AppModalUserInfoProps> = ({setFormData, formData, formErrors}) => {
+const AppModalUserInfo: FC <AppModalUserInfoProps> = ({formData, formErrors, setFormData}) => {
   return (
     <div>
       <div className='modal__form-block'>

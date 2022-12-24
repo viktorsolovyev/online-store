@@ -1,0 +1,48 @@
+.modal__form-card {
+  position: relative;
+}
+
+.modal__form-card-icon {
+  width: 27px;
+  height: 20px;
+  position: absolute;
+  top: 16px;
+  right: 15px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.modal__form-card-icon_none {
+  background-image: url(../../assets/card.svg);
+}
+
+.modal__form-card-icon_visa {
+  background-image: url(../../assets/card_visa.svg);
+}
+
+.modal__form-card-icon_mastercard {
+  background-image: url(../../assets/card_mastercard.svg);
+}
+
+.modal__form-card-icon_maestro {
+  background-image: url(../../assets/card_maestro.svg);
+}
+
+.modal__form-error {
+  display: block;
+  margin-top: 5px;
+}
+
+@media (max-width: 567px) {
+  .modal__form-heading {
+    margin-bottom: 1.76vw;
+    font-size: 3.88vw;
+    line-height: 4.59vw;
+  } 
+  .modal__form-card-icon {
+    width: 4.76vw;
+    height: 3.53vw;
+    top: 2.82vw;
+    right: 2.65vw;
+  }
+}

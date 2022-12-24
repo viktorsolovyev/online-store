@@ -15,6 +15,10 @@
   line-height: 26px;
 }
 
+.cart__item-info {
+  margin-top: 5px;
+}
+
 .cart__item-description {
   max-width: 162px;
   margin-top: 5px;

@@ -6,12 +6,12 @@ import AppModalForm from './AppModalForm';
 
 interface AppModalProps {
   isOpen: Boolean,
-  setIsOpen: Function,
   orderAccepted: Boolean,
+  setIsOpen: Function,
   setOrderAccepted: Function,
 }
 
-const AppModal:FC <AppModalProps>= ({isOpen, setIsOpen, orderAccepted, setOrderAccepted}) => {
+const AppModal:FC <AppModalProps>= ({isOpen, orderAccepted,setIsOpen, setOrderAccepted}) => {
 
   const navigate = useNavigate();
 

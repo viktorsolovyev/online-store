@@ -1,16 +1,17 @@
+import '../styles/components/appModalCard.css';
 import { FC, ChangeEvent, useState } from 'react'
-import getCardSystem from '../helpers/getCardSystem';
 import { IErrors, IFormData } from '../types/types';
+import getCardSystem from '../helpers/getCardSystem';
 
 interface AppModalCardProps {
-  formData: IFormData,
-  setFormData: Function,
-  formErrors: IErrors,
   cardSystem: string,
+  formData: IFormData,
+  formErrors: IErrors,
+  setFormData: Function,
   setCardSystem: Function,
 }
 
-const AppModalCard: FC <AppModalCardProps> = ({formData, setFormData, formErrors, cardSystem, setCardSystem}) => {
+const AppModalCard: FC <AppModalCardProps> = ({cardSystem, formData, formErrors, setFormData, setCardSystem}) => {
 
   const [cardCounter, setCardCounter] = useState(0);
 

@@ -34,6 +34,14 @@ const CartPageItem:FC<CartPageItemProps> = ({product}) => {
         <img alt={product.title} src={product.image} className='cart__item-image'/>
         <div>
           <h3 className='cart__item-heading'>{product.title}</h3>
+          <div className="card__info cart__item-info">
+            <div className="card__rating">
+              <span className="card__raiting-icon"></span>
+              <div className="card__rating-number">{product.raiting}</div>
+            </div>
+            <div className="card__stock">/</div>
+            <div className="card__stock">{product.stock} in stock</div>
+          </div>
           <p className='cart__item-description'>{product.description.slice(0,30)}...</p>
           <div className='cart__item-amount'>
             <button onClick={decrementAmount}>-</button>
