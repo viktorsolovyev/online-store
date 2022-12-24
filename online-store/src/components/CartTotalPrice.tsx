@@ -4,46 +4,49 @@ import { getPriceSale } from '../helpers/getSalePrice';
 
 interface CartTotalPriceProps {
   totalPrice: number,
+  totalSale: number,
+  totalShiping: number,
+  baseShiping: number,
   addPromo: Function,
   setIsOpen: Function,
-  isPromo: {sale: boolean, shiping: boolean},
-  configPromo: {sale: number, shiping: number},
-  oldPrices: {shiping: number, price: number},
 }
 
-const CartTotalPrice: FC<CartTotalPriceProps> = ({totalPrice, oldPrices, addPromo, setIsOpen, isPromo, configPromo}) => {
+const CartTotalPrice: FC<CartTotalPriceProps> = ({totalPrice, totalSale, totalShiping, baseShiping, addPromo, setIsOpen}) => {
 
   function totalPriceWithSale() {
-    return getPriceSale(totalPrice, configPromo.sale);
+    return getPriceSale(totalPrice, totalSale);
   }
+
+  const isSale = totalSale > 0;
+  const isShiping = totalShiping === 0;
 
   return (
     <div className='cart__total'>
       <div className='cart__total-content'>
         <h2 className='cart__total-heading'>Total</h2>
-        <div className='cart__total-heading'>${isPromo.sale ? totalPriceWithSale() + configPromo.shiping : totalPrice}</div>
+        <div className='cart__total-heading'>${totalPrice > 0 ? totalPriceWithSale() + totalShiping : totalPrice}</div>
       </div>
       <ul className='cart__total-list'>
         <li className='cart__total-item'>
           <div className='cart__total-info'>Subtotal</div>
-          {isPromo.sale
+          {isSale
           ?
             <div className="card__price-sale">
               <div className="card__price-main">{totalPriceWithSale()}$</div>
-              <div className="card__price-prev">{oldPrices.price}$</div>
+              <div className="card__price-prev">{totalPrice}$</div>
             </div>
-          : <div className='cart__total-price'>${oldPrices.price}</div>
+          : <div className='cart__total-price'>${totalPrice}</div>
           }
         </li>
         <li className='cart__total-item'>
           <div className='cart__total-info'>Shipping</div>
-          {isPromo.shiping
+          {isShiping
           ?
             <div className="card__price-sale">
-              <div className="card__price-main">{configPromo.shiping}$</div>
-              <div className="card__price-prev">{oldPrices.shiping}$</div>
+              <div className="card__price-main">{0}$</div>
+              <div className="card__price-prev">{baseShiping}$</div>
             </div>
-          : <div className='cart__total-price'>${oldPrices.shiping}</div>
+          : <div className='cart__total-price'>${baseShiping}</div>
           }
         </li>
       </ul>
@@ -52,7 +55,7 @@ const CartTotalPrice: FC<CartTotalPriceProps> = ({totalPrice, oldPrices, addProm
         <label 
           className='cart__total-label'
           htmlFor="promo">Promo for test: 
-          <span className={isPromo.sale ? 'promo_active' : ''}> 'RS'</span>, <span className={isPromo.shiping ? 'promo_active' : ''}>'EPM'</span>
+          <span className={isSale ? 'promo_active' : ''}> 'RS'</span>, <span className={isShiping ? 'promo_active' : ''}>'EPM'</span>
         </label>
       </form>
       <button onClick={() => setIsOpen(true)} className='cart__total-btn btn'>Continue</button>

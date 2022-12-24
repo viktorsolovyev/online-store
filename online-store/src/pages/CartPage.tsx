@@ -16,12 +16,15 @@ const CartPage = () => {
   
   const [searchQuery] = useSearchParams();
 
+  const config = {
+    shiping: 8,
+  }
+
   const [perPage, setPerPage] = useState(2);
-  const [configPromo, setConfigPromo] = useState({shiping: 8, sale: 10})
   const [currentPage, setCurrentPage] = useState(1);
-  const [isPromo, setIsPromo] = useState({sale: false, shiping: false});
   const [totalPrice, setTotalPrice] = useState(0);
-  const [oldPrices, setOldPrices] = useState({shiping: 8, price: 0});
+  const [totalSale, setTotalSale] = useState(0);
+  const [totalShiping, setTotalShiping] = useState(config.shiping);
 
   const [isOpen, setIsOpen] = useState(false);
   const [orderAccepted, setOrderAccepted] = useState(false);
@@ -33,10 +36,10 @@ const CartPage = () => {
   }, [perPage, currentPage, totalCart])
 
   function addPromo(e: ChangeEvent<HTMLInputElement>) {
-    if (e.target.value === "RS") setIsPromo({...isPromo, sale: true});
+    if (e.target.value === "RS") setTotalSale(totalSale + 10);
+    if (e.target.value === 'MK') setTotalSale(totalSale + 10);
     if (e.target.value === "EPM") {
-      setConfigPromo({...configPromo, shiping: 0})
-      setIsPromo({...isPromo, shiping: true});
+      setTotalShiping(0);
     }
   }
 
@@ -47,7 +50,6 @@ const CartPage = () => {
   useMemo(() => {
     let priceCounter = 0;
     totalCart.map((item) => priceCounter += item.price * item.amount);
-    setOldPrices({...oldPrices, price: priceCounter})
     setTotalPrice(priceCounter);
   }, [totalCart])
 
@@ -93,10 +95,10 @@ const CartPage = () => {
           </div>
           <CartTotalPrice
             totalPrice={totalPrice}
-            oldPrices={oldPrices}
-            configPromo={configPromo}
+            totalSale={totalSale}
+            totalShiping={totalShiping}
+            baseShiping={config.shiping}
             addPromo={addPromo}
-            isPromo={isPromo}
             setIsOpen={setIsOpen}
           />
         </div>
