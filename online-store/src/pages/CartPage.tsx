@@ -4,7 +4,6 @@ import { ChangeEvent, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { getTotalCart } from '../app/feautures/cartSlice';
-import { getPriceSale } from '../helpers/getSalePrice';
 import CartPageItem from '../components/CartPageItem';
 import CartTotalPrice from '../components/CartTotalPrice';
 import CartPagination from '../components/CartPagination';
@@ -21,6 +20,8 @@ const CartPage = () => {
   const [configPromo, setConfigPromo] = useState({shiping: 8, sale: 10})
   const [currentPage, setCurrentPage] = useState(1);
   const [isPromo, setIsPromo] = useState({sale: false, shiping: false});
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [oldPrices, setOldPrices] = useState({shiping: 8, price: 0});
 
   const [isOpen, setIsOpen] = useState(false);
   const [orderAccepted, setOrderAccepted] = useState(false);
@@ -31,13 +32,6 @@ const CartPage = () => {
     return totalCart.slice((currentPage - 1) * perPage, currentPage * perPage);
   }, [perPage, currentPage, totalCart])
 
-  function getTotalPrice() {
-    let counter = 0;
-    totalCart.map((item) => counter += item.price * item.amount);
-    if (isPromo.sale) counter = getPriceSale(counter, configPromo.sale);
-    return counter;
-  }
-
   function addPromo(e: ChangeEvent<HTMLInputElement>) {
     if (e.target.value === "RS") setIsPromo({...isPromo, sale: true});
     if (e.target.value === "EPM") {
@@ -45,6 +39,17 @@ const CartPage = () => {
       setIsPromo({...isPromo, shiping: true});
     }
   }
+
+  function getProductIndex(id: number) {
+    return totalCart.findIndex(item => item.id === id) + 1;
+  }
+
+  useMemo(() => {
+    let priceCounter = 0;
+    totalCart.map((item) => priceCounter += item.price * item.amount);
+    setOldPrices({...oldPrices, price: priceCounter})
+    setTotalPrice(priceCounter);
+  }, [totalCart])
 
   useMemo(() => {
     if (searchQuery.get('page')) {
@@ -56,10 +61,6 @@ const CartPage = () => {
       if (queryLimit) setPerPage(+queryLimit);
     }
   },[])
-
-  function getProductIndex(id: number) {
-    return totalCart.findIndex(item => item.id === id) + 1;
-  }
 
   return (
     <div className="container">
@@ -91,8 +92,9 @@ const CartPage = () => {
             />
           </div>
           <CartTotalPrice
-            shipingPrice={configPromo.shiping}
-            getTotalPrice={getTotalPrice}
+            totalPrice={totalPrice}
+            oldPrices={oldPrices}
+            configPromo={configPromo}
             addPromo={addPromo}
             isPromo={isPromo}
             setIsOpen={setIsOpen}
