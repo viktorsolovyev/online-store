@@ -1,5 +1,6 @@
 import '../styles/components/cartHeaderInfo.css';
 import { FC } from "react";
+import { useSearchParams } from 'react-router-dom';
 
 interface CartHeaderProps {
   perPage: number,
@@ -9,13 +10,19 @@ interface CartHeaderProps {
 
 const CartHeaderInfo: FC<CartHeaderProps> = ({perPage, setPerPage, currentPage}) => {
 
+  const [searchQuery, setSearchQuery] = useSearchParams();
+
   function decrementPerPage() {
     if (perPage === 1) return;
+    searchQuery.set('limit', `${perPage - 1}`);
+    setSearchQuery(searchQuery);
     setPerPage(perPage - 1);
   }
 
   function incrementPerPage() {
     if (perPage === 10) return;
+    searchQuery.set('limit', `${perPage + 1}`);
+    setSearchQuery(searchQuery);
     setPerPage(perPage + 1);
   }
 

@@ -1,10 +1,11 @@
 import '../styles/pages/cartPage.css';
 import '../styles/components/cartItem.css';
-import { getTotalCart } from '../app/feautures/cartSlice';
-import { useSelector } from 'react-redux';
-import CartPageItem from '../components/CartPageItem';
 import { ChangeEvent, useMemo, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
+import { getTotalCart } from '../app/feautures/cartSlice';
 import { getPriceSale } from '../helpers/getSalePrice';
+import CartPageItem from '../components/CartPageItem';
 import CartTotalPrice from '../components/CartTotalPrice';
 import CartPagination from '../components/CartPagination';
 import CartHeaderInfo from '../components/CartHeaderInfo';
@@ -13,6 +14,8 @@ import AppModal from '../components/AppModal';
 const CartPage = () => {
 
   const totalCart = useSelector(getTotalCart);
+  
+  const [searchQuery] = useSearchParams();
 
   const [perPage, setPerPage] = useState(2);
   const [configPromo, setConfigPromo] = useState({shiping: 8, sale: 10})
@@ -42,6 +45,17 @@ const CartPage = () => {
       setIsPromo({...isPromo, shiping: true});
     }
   }
+
+  useMemo(() => {
+    if (searchQuery.get('page')) {
+      const queryPage = searchQuery.get('page');
+      if (queryPage) setCurrentPage(+queryPage);
+    }
+    if (searchQuery.get('limit')) {
+      const queryLimit = searchQuery.get('limit');
+      if (queryLimit) setPerPage(+queryLimit);
+    }
+  },[])
 
   return (
     <div className="container">
