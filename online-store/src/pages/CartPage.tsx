@@ -61,9 +61,7 @@ const CartPage = () => {
       {
         totalCart.length === 0 
         ?
-        <div className="cart__content">
           <h2 className='error-message'>Your cart is empty</h2>
-        </div>
         :
         <div className="cart__content">
           <div className='cart__content-cart'>
