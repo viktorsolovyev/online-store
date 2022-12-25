@@ -1,6 +1,6 @@
 import '../styles/pages/cartPage.css';
 import { useMemo, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { getTotalCart } from '../app/feautures/cartSlice';
 import CartPageItem from '../components/CartPageItem';
@@ -8,10 +8,14 @@ import CartTotalPrice from '../components/CartTotalPrice';
 import CartPagination from '../components/CartPagination';
 import CartHeaderInfo from '../components/CartHeaderInfo';
 import AppModal from '../components/AppModal';
+import { isCartOpen } from '../app/feautures/modalSlice';
+import { toggleModal } from '../app/feautures/modalSlice';
 
 const CartPage = () => {
 
+  const dispatch = useDispatch();
   const totalCart = useSelector(getTotalCart);
+  const isOpen = useSelector(isCartOpen);
   
   const [searchQuery] = useSearchParams();
 
@@ -24,7 +28,6 @@ const CartPage = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalSale, setTotalSale] = useState(0);
 
-  const [isOpen, setIsOpen] = useState(false);
   const [orderAccepted, setOrderAccepted] = useState(false);
 
   const perPageCart = useMemo(() => {
@@ -55,6 +58,9 @@ const CartPage = () => {
     }
   },[])
 
+  function setIsOpen(val: boolean) {
+    dispatch(toggleModal(val));
+  }
 
   return (
     <div className="container">

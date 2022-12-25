@@ -91,7 +91,7 @@ const ItemPage = () => {
                   ? <button onClick={removeProduct} className='btn'>Remove from cart</button>
                   : <button onClick={addProduct} className='btn'>Add to cart</button>
                 }
-                <button className='btn'>Shop now</button>
+                <Link onClick={addProduct} to="/cart" className='btn'>Shop now</Link>
               </div>
             </div>
           </div>
