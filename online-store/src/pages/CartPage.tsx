@@ -1,6 +1,6 @@
 import '../styles/pages/cartPage.css';
 import '../styles/components/cartItem.css';
-import { ChangeEvent, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { getTotalCart } from '../app/feautures/cartSlice';
@@ -24,7 +24,6 @@ const CartPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalSale, setTotalSale] = useState(0);
-  const [totalShiping, setTotalShiping] = useState(config.shiping);
 
   const [isOpen, setIsOpen] = useState(false);
   const [orderAccepted, setOrderAccepted] = useState(false);
@@ -35,13 +34,6 @@ const CartPage = () => {
     return totalCart.slice((currentPage - 1) * perPage, currentPage * perPage);
   }, [perPage, currentPage, totalCart])
 
-  function addPromo(e: ChangeEvent<HTMLInputElement>) {
-    if (e.target.value === "RS") setTotalSale(totalSale + 10);
-    if (e.target.value === 'MK') setTotalSale(totalSale + 10);
-    if (e.target.value === "EPM") {
-      setTotalShiping(0);
-    }
-  }
 
   function getProductIndex(id: number) {
     return totalCart.findIndex(item => item.id === id) + 1;
@@ -63,6 +55,7 @@ const CartPage = () => {
       if (queryLimit) setPerPage(+queryLimit);
     }
   },[])
+
 
   return (
     <div className="container">
@@ -96,9 +89,8 @@ const CartPage = () => {
           <CartTotalPrice
             totalPrice={totalPrice}
             totalSale={totalSale}
-            totalShiping={totalShiping}
+            setTotalSale={setTotalSale}
             baseShiping={config.shiping}
-            addPromo={addPromo}
             setIsOpen={setIsOpen}
           />
         </div>

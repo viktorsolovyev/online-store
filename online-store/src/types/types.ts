@@ -54,3 +54,10 @@ export type IFormData = {
   date: string,
   CVV: string,
 }
+
+
+export type IPromo = {
+  name: string,
+  body: string,
+  sale: number,
+}
