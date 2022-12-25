@@ -60,7 +60,6 @@ const AppModalCard: FC <AppModalCardProps> = ({cardSystem, formData, formErrors,
     setFormData({...formData, CVV: value});
   }
 
-
   return (
     <div style={{marginTop: 25}} className='modal__form-block'>
       <h2 className='modal__form-heading'>Card info</h2>

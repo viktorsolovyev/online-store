@@ -11,7 +11,7 @@ interface AppModalProps {
   setOrderAccepted: Function,
 }
 
-const AppModal:FC <AppModalProps>= ({isOpen, orderAccepted,setIsOpen, setOrderAccepted}) => {
+const AppModal:FC <AppModalProps>= ({isOpen, orderAccepted, setIsOpen, setOrderAccepted}) => {
 
   const navigate = useNavigate();
 

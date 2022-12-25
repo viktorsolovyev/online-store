@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { getAllProducts } from "../app/feautures/productsSlice";
 import ProductsSettings from "../components/ProductsSettings";
 import ProductsList from "../components/ProductsList";
@@ -47,7 +47,7 @@ const StorePage = () => {
 
   return (
     <div className="container store__container">
-        <aside className="filters"><Link to='/cart'>ToCart</Link></aside>
+        <aside className="filters"></aside>
         <div className="products__container">
           <ProductsSettings 
             modalOpen={modalOpen}
