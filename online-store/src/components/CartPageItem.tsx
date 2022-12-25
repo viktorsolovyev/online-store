@@ -1,3 +1,4 @@
+import '../styles/components/cartPageItem.css';
 import { FC } from "react"
 import { ICart } from "../types/types"
 import { getPriceSale } from '../helpers/getSalePrice';

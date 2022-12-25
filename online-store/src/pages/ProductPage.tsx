@@ -1,5 +1,4 @@
 import '../styles/pages/productPage.css';
-import '../styles/components/productItem.css';
 import { Link } from 'react-router-dom';
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";

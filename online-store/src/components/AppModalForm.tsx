@@ -1,3 +1,4 @@
+import '../styles/components/appModalForm.css';
 import {FC, FormEvent, useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { IErrors, IFormData } from '../types/types';

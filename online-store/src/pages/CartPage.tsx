@@ -1,5 +1,4 @@
 import '../styles/pages/cartPage.css';
-import '../styles/components/cartItem.css';
 import { useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
