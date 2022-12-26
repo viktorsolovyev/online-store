@@ -23,8 +23,8 @@ const CartPage = () => {
     shiping: 8,
   }
 
-  const [totalPages, setTotalPages] = useState(0);
   const [perPage, setPerPage] = useState(2);
+  const [totalPages, setTotalPages] = useState(Math.ceil(totalCart.length / perPage));
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalSale, setTotalSale] = useState(0);
@@ -51,7 +51,15 @@ const CartPage = () => {
   useMemo(() => {
     if (searchQuery.get('page')) {
       const queryPage = searchQuery.get('page');
-      if (queryPage) setCurrentPage(+queryPage);
+      if (queryPage) {
+        if (!+queryPage) {
+          setCurrentPage(1);
+        } else if (+queryPage > totalPages) {
+          setCurrentPage(1);
+        } else {
+          setCurrentPage(+queryPage);
+        }
+      }
     }
     if (searchQuery.get('limit')) {
       const queryLimit = searchQuery.get('limit');
