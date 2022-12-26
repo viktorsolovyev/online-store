@@ -21,32 +21,32 @@ const DropdownModal: FC<DropdownModalProps> = ({setModalIsOpen, modalOpen, sortB
   const sortTypes: ISort[] = [
     {
       id: 1,
-      value: 'asc',
+      value: 'price-ASC',
       title: 'Sort by price ASC',
     },
     {
       id: 2,
-      value: 'desc',
+      value: 'price-DESC',
       title: 'Sort by price DESC',
     },
     {
       id: 3,
-      value: 'raitAsc',
+      value: 'raiting-ASC',
       title: 'Sort by rating ASC',
     },
     {
       id: 4,
-      value: 'raitDesc',
+      value: 'raiting-DESC',
       title: 'Sort by rating DESC',
     },
     {
       id: 5,
-      value: 'discAsc',
+      value: 'sale-ASC',
       title: 'Sort by discount ASC',
     },
     {
       id: 6,
-      value: 'discDesc',
+      value: 'sale-DESC',
       title: 'Sort by discount DESC',
     },
   ]
