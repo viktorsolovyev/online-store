@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { IProduct, ICategories } from "../types/types";
 import { getPriceSale } from '../helpers/getSalePrice';
 import { addToCart, removeFromCart } from '../app/feautures/cartSlice';
+import { toggleModal } from '../app/feautures/modalSlice';
 
 const ItemPage = () => {
 
@@ -47,6 +48,13 @@ const ItemPage = () => {
 
   function removeProduct() {
     if (currentProduct) disptach(removeFromCart(currentProduct.id));
+  }
+
+  function buyProduct() {
+    if (currentProduct) {
+      disptach(addToCart(currentProduct));
+      disptach(toggleModal(true));
+    };
   }
 
   return (
@@ -91,7 +99,7 @@ const ItemPage = () => {
                   ? <button onClick={removeProduct} className='btn'>Remove from cart</button>
                   : <button onClick={addProduct} className='btn'>Add to cart</button>
                 }
-                <Link onClick={addProduct} to="/cart" className='btn'>Shop now</Link>
+                <Link onClick={buyProduct} to="/cart" className='btn'>Shop now</Link>
               </div>
             </div>
           </div>
