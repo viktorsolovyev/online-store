@@ -21,6 +21,10 @@
   background-image: url(../../assets/next-btn.svg);
 }
 
+.cart__pagination_disabled {
+  opacity: .4;
+}
+
 @media (max-width: 567px) {
   .cart__pagination {
     margin-top: 7.05vw;

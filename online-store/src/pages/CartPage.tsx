@@ -23,6 +23,7 @@ const CartPage = () => {
     shiping: 8,
   }
 
+  const [totalPages, setTotalPages] = useState(0);
   const [perPage, setPerPage] = useState(2);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -33,9 +34,9 @@ const CartPage = () => {
   const perPageCart = useMemo(() => {
     const pages = Math.ceil(totalCart.length / perPage);
     if (currentPage > pages) setCurrentPage(currentPage - 1);
+    setTotalPages(pages);
     return totalCart.slice((currentPage - 1) * perPage, currentPage * perPage);
-  }, [perPage, currentPage, totalCart])
-
+  }, [perPage, currentPage, totalCart]);
 
   function getProductIndex(id: number) {
     return totalCart.findIndex(item => item.id === id) + 1;
@@ -87,6 +88,7 @@ const CartPage = () => {
             <CartPagination
               setCurrentPage={setCurrentPage}
               currentPage={currentPage}
+              totalPages={totalPages}
             />
           </div>
           <CartTotalPrice

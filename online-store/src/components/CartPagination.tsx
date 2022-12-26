@@ -4,15 +4,20 @@ import { useSearchParams } from 'react-router-dom';
 
 interface CartPaginationProps {
   setCurrentPage: Function,
+  totalPages: number,
   currentPage: number,
 }
 
-const CartPagination: FC<CartPaginationProps> = ({setCurrentPage, currentPage}) => {
+const CartPagination: FC<CartPaginationProps> = ({setCurrentPage, currentPage, totalPages}) => {
 
   const [searchQuery, setSearchQuery] = useSearchParams();
 
+  const isFirstPage = currentPage === 1;
+  const isLastPage = currentPage === totalPages;
+
   function nextPage() {
     searchQuery.set('page',`${currentPage + 1}`);
+    if (currentPage === totalPages) return;
     setSearchQuery(searchQuery);
     setCurrentPage(currentPage + 1);
   }
@@ -26,8 +31,16 @@ const CartPagination: FC<CartPaginationProps> = ({setCurrentPage, currentPage}) 
 
   return (
     <div className='cart__pagination'>
-      <button className='cart__pagination-prev' onClick={prevPage}></button>
-      <button className='cart__pagination-next' onClick={nextPage}></button>
+      <button 
+        onClick={prevPage}
+        disabled={isFirstPage}
+        className={isFirstPage ? 'cart__pagination-prev cart__pagination_disabled' : 'cart__pagination-prev'}>
+      </button>
+      <button 
+        onClick={nextPage}
+        disabled={isLastPage}
+        className={isLastPage ? 'cart__pagination-next cart__pagination_disabled' : 'cart__pagination-next'}>
+      </button>
     </div>
   )
 }
