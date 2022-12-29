@@ -1,4 +1,4 @@
-import '../styles/components/productItem.css';
+import '../styles/components/productCard.css';
 import { FC, MouseEvent } from "react"
 import { Link } from "react-router-dom";
 import { IProduct } from "../types/types";

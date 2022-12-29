@@ -1,46 +1,74 @@
 import '../styles/pages/cartPage.css';
-import '../styles/components/cartItem.css';
+import { useMemo, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import { getTotalCart } from '../app/feautures/cartSlice';
-import { useSelector } from 'react-redux';
 import CartPageItem from '../components/CartPageItem';
-import { ChangeEvent, useMemo, useState } from 'react';
-import { getPriceSale } from '../helpers/getSalePrice';
 import CartTotalPrice from '../components/CartTotalPrice';
 import CartPagination from '../components/CartPagination';
 import CartHeaderInfo from '../components/CartHeaderInfo';
 import AppModal from '../components/AppModal';
+import { isCartOpen } from '../app/feautures/modalSlice';
+import { toggleModal } from '../app/feautures/modalSlice';
 
 const CartPage = () => {
 
+  const dispatch = useDispatch();
   const totalCart = useSelector(getTotalCart);
+  const isOpen = useSelector(isCartOpen);
+  
+  const [searchQuery] = useSearchParams();
+
+  const config = {
+    shiping: 8,
+  }
 
   const [perPage, setPerPage] = useState(2);
-  const [configPromo, setConfigPromo] = useState({shiping: 8, sale: 10})
+  const [totalPages, setTotalPages] = useState(Math.ceil(totalCart.length / perPage));
   const [currentPage, setCurrentPage] = useState(1);
-  const [isPromo, setIsPromo] = useState({sale: false, shiping: false});
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalSale, setTotalSale] = useState(0);
 
-  const [isOpen, setIsOpen] = useState(false);
   const [orderAccepted, setOrderAccepted] = useState(false);
 
   const perPageCart = useMemo(() => {
     const pages = Math.ceil(totalCart.length / perPage);
     if (currentPage > pages) setCurrentPage(currentPage - 1);
+    setTotalPages(pages);
     return totalCart.slice((currentPage - 1) * perPage, currentPage * perPage);
-  }, [perPage, currentPage, totalCart])
+  }, [perPage, currentPage, totalCart]);
 
-  function getTotalPrice() {
-    let counter = 0;
-    totalCart.map((item) => counter += item.price * item.amount);
-    if (isPromo.sale) counter = getPriceSale(counter, configPromo.sale);
-    return counter;
+  function getProductIndex(id: number) {
+    return totalCart.findIndex(item => item.id === id) + 1;
   }
 
-  function addPromo(e: ChangeEvent<HTMLInputElement>) {
-    if (e.target.value === "RS") setIsPromo({...isPromo, sale: true});
-    if (e.target.value === "EPM") {
-      setConfigPromo({...configPromo, shiping: 0})
-      setIsPromo({...isPromo, shiping: true});
+  useMemo(() => {
+    let priceCounter = 0;
+    totalCart.map((item) => priceCounter += item.price * item.amount);
+    setTotalPrice(priceCounter);
+  }, [totalCart])
+
+  useMemo(() => {
+    if (searchQuery.get('page')) {
+      const queryPage = searchQuery.get('page');
+      if (queryPage) {
+        if (!+queryPage) {
+          setCurrentPage(1);
+        } else if (+queryPage > totalPages) {
+          setCurrentPage(1);
+        } else {
+          setCurrentPage(+queryPage);
+        }
+      }
     }
+    if (searchQuery.get('limit')) {
+      const queryLimit = searchQuery.get('limit');
+      if (queryLimit) setPerPage(+queryLimit);
+    }
+  },[])
+
+  function setIsOpen(val: boolean) {
+    dispatch(toggleModal(val));
   }
 
   return (
@@ -48,9 +76,7 @@ const CartPage = () => {
       {
         totalCart.length === 0 
         ?
-        <div className="cart__content">
           <h2 className='error-message'>Your cart is empty</h2>
-        </div>
         :
         <div className="cart__content">
           <div className='cart__content-cart'>
@@ -64,19 +90,20 @@ const CartPage = () => {
             </div>
             <ul>
               {perPageCart.map(item => 
-                <CartPageItem key={item.id} product={item}/>
+                <CartPageItem key={item.id} product={item} index={getProductIndex(item.id)}/>
               )}
             </ul>
             <CartPagination
               setCurrentPage={setCurrentPage}
               currentPage={currentPage}
+              totalPages={totalPages}
             />
           </div>
           <CartTotalPrice
-            shipingPrice={configPromo.shiping}
-            getTotalPrice={getTotalPrice}
-            addPromo={addPromo}
-            isPromo={isPromo}
+            totalPrice={totalPrice}
+            totalSale={totalSale}
+            setTotalSale={setTotalSale}
+            baseShiping={config.shiping}
             setIsOpen={setIsOpen}
           />
         </div>

@@ -39,7 +39,25 @@ export type IErrors = {
   address: boolean,
   number: boolean,
   cardNumber: boolean,
-  cardDate: boolean,
-  cvv: boolean,
+  date: boolean,
+  CVV: boolean,
 }
   
+export type IFormData = {
+  email: string,
+  firstname: string,
+  lastname: string,
+  address: string,
+  number: string,
+  cardNumber: string,
+  cardNumberValid: string,
+  date: string,
+  CVV: string,
+}
+
+
+export type IPromo = {
+  name: string,
+  body: string,
+  sale: number,
+}

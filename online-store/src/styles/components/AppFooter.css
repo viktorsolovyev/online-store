@@ -1,0 +1,29 @@
+.footer {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #1C1C1C;
+}
+
+.footer__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer__rights {
+  font-size: 18px;
+  line-height: 21px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+
+@media (max-width: 567px) {
+  .footer {
+    padding-top: 7.05vw;
+    padding-bottom: 7.05vw;
+  }
+  .footer__rights {
+    font-size: 3.17vw;
+    line-height: 3.70vw;
+  }
+}

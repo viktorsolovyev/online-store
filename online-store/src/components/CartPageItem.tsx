@@ -1,3 +1,4 @@
+import '../styles/components/cartPageItem.css';
 import { FC } from "react"
 import { ICart } from "../types/types"
 import { getPriceSale } from '../helpers/getSalePrice';
@@ -6,9 +7,10 @@ import { removeFromCart, addAmount, removeAmount } from "../app/feautures/cartSl
 
 interface CartPageItemProps {
   product: ICart,
+  index: number,
 }
 
-const CartPageItem:FC<CartPageItemProps> = ({product}) => {
+const CartPageItem:FC<CartPageItemProps> = ({product, index}) => {
 
   const dispatch = useDispatch();
 
@@ -33,7 +35,16 @@ const CartPageItem:FC<CartPageItemProps> = ({product}) => {
       <div className='cart__item-content'>
         <img alt={product.title} src={product.image} className='cart__item-image'/>
         <div>
+          <div className="cart__item-index">#{index}</div>
           <h3 className='cart__item-heading'>{product.title}</h3>
+          <div className="card__info cart__item-info">
+            <div className="card__rating">
+              <span className="card__raiting-icon"></span>
+              <div className="card__rating-number">{product.raiting}</div>
+            </div>
+            <div className="card__stock">/</div>
+            <div className="card__stock">{product.stock} in stock</div>
+          </div>
           <p className='cart__item-description'>{product.description.slice(0,30)}...</p>
           <div className='cart__item-amount'>
             <button onClick={decrementAmount}>-</button>

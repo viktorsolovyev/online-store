@@ -7,6 +7,7 @@ import ProductsList from "../components/ProductsList";
 import '../styles/pages/storePage.css';
 import AppFilter from "../components/AppFilter";
 import { getAllCategories } from "../app/feautures/categories";
+import { IProduct } from "../types/types";
 
 const StorePage = () => {
   const totalProducts = useSelector(getAllProducts);
@@ -32,19 +33,17 @@ const StorePage = () => {
   const sortedProducts = useMemo(() => {
     const copy = [...totalProducts];
     if (sortBy.length <= 0) return copy;
-    if (sortBy === 'asc') {
-      copy.sort((a,b) => a.price - b.price);
-    } else if (sortBy === 'desc') {
-      copy.sort((a,b) => b.price - a.price);
-    } else if (sortBy === 'raitAsc') {
-      copy.sort((a,b) => a.raiting - b.raiting);
-    } else if (sortBy === 'raitDesc') {
-      copy.sort((a,b) => b.raiting - a.raiting);
-    } else if (sortBy === 'discAsc') {
-      copy.sort((a,b) => a.sale - b.sale);
-    } else if (sortBy === 'discDesc') {
-      copy.sort((a,b) => b.sale - a.sale);
-    }
+    
+    const [sortParam, sortType] = sortBy.split('-');
+
+    const key: keyof IProduct = sortParam as keyof IProduct;
+    copy.sort((a,b) => {
+      if (sortType === 'ASC') {
+        return +a[key] - +b[key];
+      } 
+      return +b[key] - +a[key];
+    });
+    
     return copy;
   },[totalProducts, sortBy]);
 

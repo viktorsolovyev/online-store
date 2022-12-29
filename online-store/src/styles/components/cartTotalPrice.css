@@ -60,8 +60,19 @@
   color: rgba(0, 0, 0, 0.2);
 }
 
-.cart__total-label {
+.cart__total-promos-list {
+  display: flex;
+  gap: 4px;
+}
+
+.cart__total-codes {
   margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cart__total-label {
   font-size: 16px;
   line-height: 19px;
   color: rgba(28, 28, 28, 0.6);
@@ -71,6 +82,24 @@
   margin-top: 30px;
   padding-left: 117px;
   padding-right: 117px;
+}
+
+.cart__total-finded {
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cart__total-finded-heading {
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.cart__total-finded-btn {
+  padding: 6px 24px;
+  font-size: 18px;
+  line-height: 21px;
 }
 
 @media (max-width: 1625px) {
@@ -105,14 +134,10 @@
     font-size: 3.88vw;
     line-height: 4.59vw;
   }
-  .cart__total-promo-input {
-    margin-top: 4.41vw;
-    font-size: 3.53vw;
-    line-height: 4.06vw;
-    padding: 3.17vw;
+  .cart__total-codes  {
+    margin-top: 1.76vw;
   }
   .cart__total-label {
-    margin-top: 1.76vw;
     font-size: 2.82vw;
     line-height: 3.35vw;
   }
@@ -120,5 +145,15 @@
     margin-top: 5.29vw;
     padding-left: 20.63vw;
     padding-right: 20.63vw;
+  }
+  .cart__total-finded-heading {
+    font-size: 3.17vw;
+    line-height: 3.70vw;
+  }
+  .cart__total-finded-btn {
+    padding: 0.88vw 5.29vw;
+    font-size: 3.17vw;
+    line-height: 3.70vw;
+    border-radius: 3.53vw;
   }
 }

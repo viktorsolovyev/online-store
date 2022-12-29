@@ -1,40 +1,55 @@
 import '../styles/components/cartTotalPrice.css';
-import { FC } from "react"
+import { FC, useState } from "react"
+import { getPriceSale } from '../helpers/getSalePrice';
+import { IPromo } from '../types/types';
+import CartPromo from './CartPromo';
 
 interface CartTotalPriceProps {
-  shipingPrice: number,
-  addPromo: Function,
-  isPromo: {sale: boolean, shiping: boolean},
-  getTotalPrice: Function,
+  totalPrice: number,
+  totalSale: number,
+  baseShiping: number,
   setIsOpen: Function,
+  setTotalSale: Function,
 }
 
-const CartTotalPrice: FC<CartTotalPriceProps> = ({shipingPrice, addPromo, isPromo, getTotalPrice, setIsOpen}) => {
+const CartTotalPrice: FC<CartTotalPriceProps> = ({setTotalSale, totalPrice, totalSale, baseShiping, setIsOpen}) => {
+
+  const isSale = totalSale > 0;
+  const [activePromos, setActivePromos] = useState<IPromo[]>([]);
+
+  function totalPriceWithSale() {
+    return getPriceSale(totalPrice, totalSale);
+  }
 
   return (
     <div className='cart__total'>
       <div className='cart__total-content'>
         <h2 className='cart__total-heading'>Total</h2>
-        <div className='cart__total-heading'>${getTotalPrice() + shipingPrice}</div>
+        <div className='cart__total-heading'>${totalPrice > 0 ? totalPriceWithSale() + baseShiping : totalPrice}</div>
       </div>
       <ul className='cart__total-list'>
         <li className='cart__total-item'>
           <div className='cart__total-info'>Subtotal</div>
-          <div className='cart__total-price'>${getTotalPrice()}</div>
+          {isSale
+          ?
+            <div className="card__price-sale">
+              <div className="card__price-main">{totalPriceWithSale()}$</div>
+              <div className="card__price-prev">{totalPrice}$</div>
+            </div>
+          : <div className='cart__total-price'>${totalPrice}</div>
+          }
         </li>
         <li className='cart__total-item'>
           <div className='cart__total-info'>Shipping</div>
-          <div className='cart__total-price'>${shipingPrice}</div>
+          <div className='cart__total-price'>${baseShiping}</div>
         </li>
       </ul>
-      <form className='cart__total-promo' action="#">
-        <input onChange={(e) => addPromo(e)} placeholder='Enter promo' className='cart__total-promo-input' id='promo' type="text"/>
-        <label 
-          className='cart__total-label'
-          htmlFor="promo">Promo for test: 
-          <span className={isPromo.sale ? 'promo_active' : ''}> 'RS'</span>, <span className={isPromo.shiping ? 'promo_active' : ''}>'EPM'</span>
-        </label>
-      </form>
+      <CartPromo
+        totalSale={totalSale}
+        activePromos={activePromos}
+        setActivePromos={setActivePromos}
+        setTotalSale={setTotalSale}
+      />
       <button onClick={() => setIsOpen(true)} className='cart__total-btn btn'>Continue</button>
     </div>
   )

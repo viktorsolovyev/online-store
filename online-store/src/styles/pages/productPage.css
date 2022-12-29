@@ -41,8 +41,8 @@
 
 .product__content-image {
     width: 100%;
-    max-width: 39.58vw; /* 760px */
-    height: 39.95vw;  /* 767px */
+    max-width: 38.54vw; /* 740px */
+    height: 38.54vw;  /* 740px */
     background-color: #F5F5F5;
     border-radius: 40px;
 }
@@ -63,6 +63,7 @@
 }
 
 .product__page-description {
+    max-width: 600px;
     margin-top: 20px;
     font-size: 20px;
     line-height: 137.69%;
@@ -172,7 +173,7 @@
     }
 
     .product__gallery-item {
-        max-width: 17.36vw;
-        border-radius: 3.47vw;
+        max-width: 12.35vw;
+        border-radius: 1.76vw;
     }
 }
