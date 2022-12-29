@@ -1,13 +1,16 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { getAllProducts } from "../app/feautures/productsSlice";
 import ProductsSettings from "../components/ProductsSettings";
 import ProductsList from "../components/ProductsList";
 import '../styles/pages/storePage.css';
+import AppFilter from "../components/AppFilter";
+import { getAllCategories } from "../app/feautures/categories";
 
 const StorePage = () => {
   const totalProducts = useSelector(getAllProducts);
+  const totalCategories = useSelector(getAllCategories);
   const [sortBy, setSortBy] = useState('');
   const [isRow, setIsRow] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
@@ -47,7 +50,9 @@ const StorePage = () => {
 
   return (
     <div className="container store__container">
-        <aside className="filters"><Link to='/cart'>ToCart</Link></aside>
+        <aside className="filters">
+          <AppFilter name="category" title="Categories" totalItems={totalCategories} />
+        </aside>
         <div className="products__container">
           <ProductsSettings 
             modalOpen={modalOpen}

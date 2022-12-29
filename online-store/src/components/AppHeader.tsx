@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../styles/components/header.css";
+import "../styles/components/appHeader.css";
 import { RootState } from "../../src/app/store";
 import { useSelector } from "react-redux";
 import { ICart } from "../types/types";
