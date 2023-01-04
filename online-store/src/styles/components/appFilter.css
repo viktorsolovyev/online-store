@@ -2,18 +2,18 @@
     font-weight: 500;
     font-size: 24px;
     line-height: 28px;
-}
-
-.filter__header h1{
     margin-bottom: 20px;
 }
 
-.filter-item {
-    margin-bottom: 10px;
+.filter__header h1{
+    margin-bottom: 15px;
 }
 
 .filter-item {
+    width: fit-content; 
+    font-size: 20px;
     color: rgba(28, 28, 28, 0.5);
+    margin-bottom: 5px;
 }
 
 .filter-item:hover {

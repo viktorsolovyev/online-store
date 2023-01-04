@@ -64,7 +64,7 @@ const ItemPage = () => {
       <div>
         <ul className="product__pagi">
           <Link to="/" className="product__pagi-item">Store</Link>
-          <li className="product__pagi-item">{currentCategory?.categoryName}</li>
+          <li className="product__pagi-item">{currentCategory?.name}</li>
           <li className="product__pagi-item">{currentProduct?.brand}</li>
         </ul>
         <div className="product__content">

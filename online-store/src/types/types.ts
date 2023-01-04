@@ -5,6 +5,7 @@ export type IProduct = {
     gallery: string[],
     title: string,
     brand: string,
+    brandId: number,
     price: number,
     sale: number,
     raiting: number,
@@ -29,7 +30,7 @@ export type ICart = {
 
 export type ICategories = {
     id: number,
-    categoryName: string,
+    name: string,
 }
 
 export type IErrors = {
@@ -55,9 +56,21 @@ export type IFormData = {
   CVV: string,
 }
 
-
 export type IPromo = {
   name: string,
   body: string,
   sale: number,
+}
+
+export type IFilter = {
+  type: string,
+  name: string,
+  values?: Array<number>,
+  minValue?: number,
+  maxValue?: number,
+}
+
+export type IBrands = {
+  id: number,
+  name: string,
 }

@@ -1,48 +1,99 @@
-import { FC, useState, useCallback } from "react";
+import { FC, useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { useSearchParams } from "react-router-dom";
 import "../styles/components/appFilter.css";
-// import { RootState } from "../../src/app/store";
-import { ICategories } from "../types/types";
+import { IBrands, ICategories } from "../types/types";
+import { filtersActions, getAllFilters } from "../app/feautures/filtersSlice";
 
 interface AppFilterProps {
+  type: string;
   name: string;
   title: string;
-  totalItems: ICategories[];
+  totalItems?: ICategories[] | IBrands[];
+  totalNumbers?: number[];
 }
 
-const AppFilter: FC<AppFilterProps> = ({ name, title, totalItems }) => {
-  // let activeArr: Array<number> = [];
-  const [activeArr, setActiveArr] = useState<Array<number>>([]);
+const AppFilter: FC<AppFilterProps> = ({ type, name, title, totalItems, totalNumbers }) => {
+  const dispatch = useDispatch();
+  const [activeItems, setactiveItems] = useState<Array<number>>([]);
+  const [searchParams, setsearchParams] = useSearchParams();
+  const totalFilters = useSelector(getAllFilters);
 
-  const toogleToActive = useCallback(
-    (id: number) => {
-      if (activeArr.includes(id)) {
-        setActiveArr([...activeArr.filter((item) => item !== id)]);
-      } else {
-        setActiveArr([...activeArr, id]);
+  useEffect(() =>{
+    totalFilters.forEach((item) => {
+      if (item.name === name && item.values) {
+        setactiveItems(item.values);
       }
-    },
-    [activeArr, setActiveArr]
-  );
+    });
+
+  }, [totalFilters]);
+
+  function toogleToActive (id: number) { 
+      if (activeItems.includes(id)) {
+        const newActiveItems = [...activeItems.filter((item) => item !== id)];
+        setactiveItems(newActiveItems);        
+        dispatch(filtersActions.removeFilter({
+          type: type,
+          name: name,
+          values: [id]
+        }));
+        if (newActiveItems.length === 0) {
+          searchParams.delete(name);
+        } else {
+          searchParams.set(name, String(newActiveItems.join('-')));
+        }
+        setsearchParams(searchParams);
+      } else {
+        const newActiveItems = [...activeItems, id];        
+        setactiveItems(newActiveItems);        
+        dispatch(filtersActions.addFilter({
+          type: type,
+          name: name,
+          values: [id]
+        }));      
+        searchParams.set(name, String(newActiveItems.join('-')));
+        setsearchParams(searchParams);        
+      }
+    }
+
+  const clearActiveItems = () => {
+    dispatch(filtersActions.removeFilter({
+      type: type,
+      name: name,
+      values: activeItems
+    }));
+    setactiveItems([]);
+    searchParams.delete(name);
+    setsearchParams(searchParams);
+  }
 
   return (
     <div className="filter__header">
       <h1>{title}</h1>
-      <ul>
-        <li className="filter-item filter-item-active">All</li>
-        {totalItems.map((item) => (          
+      {type === "list" && (
+        <ul>
           <li
-            onClick={() => {
-              toogleToActive(item.id);
-            }}
+            onClick={clearActiveItems}
             className={
-              "filter-item" +
-              (activeArr.includes(item.id) ? " filter-item-active" : "")
+              "filter-item" + (!activeItems.length ? " filter-item-active" : "")
             }
           >
-            {item.categoryName}
+            All
           </li>
-        ))}
-      </ul>
+          {totalItems?.map((item) => (
+            <li
+              key={item.id}
+              onClick={() => toogleToActive(item.id)}
+              className={
+                "filter-item" +
+                (activeItems.includes(item.id) ? " filter-item-active" : "")
+              }
+            >
+              {item.name}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

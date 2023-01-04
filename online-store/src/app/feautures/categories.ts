@@ -10,31 +10,31 @@ const initialState: MainCategoriesProps = {
   categories: [
     {
       id: 1,
-      categoryName: 'Bathroom',
+      name: 'Bathroom',
     },
     {
       id: 2,
-      categoryName: 'Bedroom',
+      name: 'Bedroom',
     },
     {
       id: 3,
-      categoryName: 'Entryway',
+      name: 'Entryway',
     },
     {
       id: 4,
-      categoryName: 'Home Office',
+      name: 'Home Office',
     },
     {
       id: 5,
-      categoryName: 'Kids Room',
+      name: 'Kids Room',
     },
     {
       id: 6,
-      categoryName: 'Kitchen & Dining',
+      name: 'Kitchen & Dining',
     },
     {
       id: 7,
-      categoryName: 'Living Room',
+      name: 'Living Room',
     },
   ],
 }

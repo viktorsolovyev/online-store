@@ -52,7 +52,7 @@ const DropdownModal: FC<DropdownModalProps> = ({setModalIsOpen, modalOpen, sortB
   ]
 
   function changeSort(value: string): void {
-    searchQuery.set('filter', value);
+    searchQuery.set('sort', value);
     setSearchQuery(searchQuery);
     setModalIsOpen(false);
     setSortBy(value);
