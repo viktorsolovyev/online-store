@@ -69,10 +69,9 @@ const StorePage = () => {
       } 
       return +b[key] - +a[key];
     });
-    totalFilters.map((filter) => {
+    totalFilters.forEach((filter) => {
       const propName: keyof IProduct = `${filter.name}Id` as keyof IProduct;
       copy = copy.filter((item) => filter.values?.includes(+item[propName]));
-      return copy;
     });
     if (search !== "") {
       copy = copy.filter(
