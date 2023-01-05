@@ -186,4 +186,6 @@ const productSlice = createSlice({
 })
 
 export const getAllProducts = ((state: RootState) => state.products.products);
+export const getAllPrices = ((state: RootState) => Array.from(new Set(state.products.products.map((product) => product.price).sort((a, b) => a - b))));
+export const getAllStocks = ((state: RootState) => Array.from(new Set(state.products.products.map((product) => product.stock).sort((a, b) => a - b))));
 export default productSlice.reducer;

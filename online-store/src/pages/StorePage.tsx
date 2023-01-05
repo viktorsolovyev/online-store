@@ -8,7 +8,7 @@ import '../styles/pages/storePage.css';
 import AppFilter from "../components/AppFilter";
 import { getAllCategories } from "../app/feautures/categories";
 import { getAllBrands } from "../app/feautures/brandsSlice";
-import { getAllPrices } from "../app/feautures/pricesSlice";
+import { getAllPrices } from "../app/feautures/productsSlice";
 import { getAllFilters, filtersActions, availableFilters} from "../app/feautures/filtersSlice";
 import { getSearch, changeSearch } from "../app/feautures/searchSlice";
 import { getPriceSale } from "../helpers/getSalePrice";
