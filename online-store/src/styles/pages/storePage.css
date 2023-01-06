@@ -12,7 +12,7 @@
 .products__list {
     margin-top: 25px;
     display: flex;
-    justify-content: space-between;
+    column-gap: 1.30vw;
     flex-wrap: wrap;
     row-gap: 25px;
 }
@@ -29,6 +29,13 @@
     border-radius: 40px;
     padding-left: 35px;
     padding-top: 35px;
+}
+
+@media (max-width: 1325px) {
+    .products__list {
+        justify-content: space-between;
+        /* column-gap: 25px; */
+    }
 }
 
 @media (max-width: 576px) {
