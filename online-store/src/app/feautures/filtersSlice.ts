@@ -46,6 +46,6 @@ const filtersSlice = createSlice({
 });
 
 export const getAllFilters = ((state: RootState) => state.filters);
-export const availableFilters = [{name: "category", type: "list"}, {name: "brand", type: "list"}, {name: "price", type: "slider"}];
+export const availableFilters = [{name: "category", type: "list"}, {name: "brand", type: "list"}, {name: "price", type: "slider"}, {name: "stock", type: "slider"}];
 export const filtersActions = filtersSlice.actions;
 export default filtersSlice.reducer;

@@ -47,7 +47,9 @@ const StorePage = () => {
           dispatch(filtersActions.addFilter({
             type: item.type,
             name: item.name,
-            values: filterValues
+            values: filterValues,
+            minValue: filterValues[0],
+            maxValue: filterValues[1],
           }));  
   
       }

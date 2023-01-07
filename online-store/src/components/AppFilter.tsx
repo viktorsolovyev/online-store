@@ -31,9 +31,17 @@ const AppFilter: FC<AppFilterProps> = ({ type, name, title, totalItems, totalNum
 
   useEffect(() =>{
     totalFilters.forEach((item) => {
-      if (item.name === name && item.values) {
-        setactiveItems(item.values);
-      }
+      if (item.name === name) {
+        if (type === "list" && item.values) {
+          setactiveItems(item.values);
+        }
+        if (type === "slider" && item.minValue && item.maxValue) {
+          setMinValue(item.minValue);
+          setMaxValue(item.maxValue);
+          setSliderValue1(item.minValue);
+          setSliderValue2(item.maxValue);
+        }
+      }      
     });
 
   }, [totalFilters]);
