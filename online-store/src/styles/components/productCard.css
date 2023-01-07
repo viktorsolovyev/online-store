@@ -183,7 +183,8 @@
 
 @media (max-width: 1325px) {
     .product__item {
-        max-width: 32.38vw; /* 429px */
+        max-width: 31.32vw; /* 420px */
+        padding: 1.51vw;
     }
     .card__header  {
         max-width: 389px;
@@ -198,6 +199,7 @@
 
 @media (max-width: 884px) {
     .product__item {
+        width: 100%;
         max-width: 100%;
     }
     .card__header  {
@@ -222,8 +224,8 @@
         margin-top: 0px;
     }
     .card__sale {
-        top: 10px;
-        left: 10px;
+        top: 20px;
+        left: 20px;
     }
 }
 
