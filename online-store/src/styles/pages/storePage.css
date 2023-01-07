@@ -24,7 +24,7 @@
 .filters {
     width: 100%;
     max-width: 20.83vw;
-    height: 900px;
+    height: fit-content;
     background-color: #fff;
     border-radius: 40px;
     padding-left: 35px;

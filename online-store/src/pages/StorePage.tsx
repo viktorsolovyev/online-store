@@ -9,6 +9,7 @@ import AppFilter from "../components/AppFilter";
 import { getAllCategories } from "../app/feautures/categories";
 import { getAllBrands } from "../app/feautures/brandsSlice";
 import { getAllPrices } from "../app/feautures/productsSlice";
+import { getAllStocks } from "../app/feautures/productsSlice";
 import { getAllFilters, filtersActions, availableFilters} from "../app/feautures/filtersSlice";
 import { getSearch, changeSearch } from "../app/feautures/searchSlice";
 import { getPriceSale } from "../helpers/getSalePrice";
@@ -19,6 +20,7 @@ const StorePage = () => {
   const totalCategories = useSelector(getAllCategories);
   const totalBrands = useSelector(getAllBrands);
   const totalPrices = useSelector(getAllPrices);
+  const totalStocks = useSelector(getAllStocks);
   const totalFilters = useSelector(getAllFilters);
   const search = useSelector(getSearch);
   const [sortBy, setSortBy] = useState('');
@@ -69,9 +71,21 @@ const StorePage = () => {
       } 
       return +b[key] - +a[key];
     });
-    totalFilters.forEach((filter) => {
-      const propName: keyof IProduct = `${filter.name}Id` as keyof IProduct;
-      copy = copy.filter((item) => filter.values?.includes(+item[propName]));
+    totalFilters.forEach((filter) => {      
+      if (filter.type === "list") {
+        const propName: keyof IProduct = `${filter.name}Id` as keyof IProduct;
+        copy = copy.filter((item) => filter.values?.includes(+item[propName]));
+      }
+      if (filter.type === "slider") {
+        const propName: keyof IProduct = `${filter.name}` as keyof IProduct;
+        copy = copy.filter(
+          (item) =>
+            filter.maxValue !== undefined &&
+            filter.minValue !== undefined &&
+            +item[propName] >= filter.minValue &&
+            +item[propName] <= filter.maxValue
+        );
+      }      
     });
     if (search !== "") {
       copy = copy.filter(
@@ -94,6 +108,7 @@ const StorePage = () => {
           <AppFilter type="list" name="category" title="Category" totalItems={totalCategories} />
           <AppFilter type="list" name="brand" title="Brand" totalItems={totalBrands} />
           <AppFilter type="slider" name="price" title="Price" totalNumbers={totalPrices} />
+          <AppFilter type="slider" name="stock" title="Stock" totalNumbers={totalStocks} />
         </aside>
         <div className="products__container">
           <ProductsSettings 

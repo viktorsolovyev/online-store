@@ -18,6 +18,16 @@ const AppFilter: FC<AppFilterProps> = ({ type, name, title, totalItems, totalNum
   const [activeItems, setactiveItems] = useState<Array<number>>([]);
   const [searchParams, setsearchParams] = useSearchParams();
   const totalFilters = useSelector(getAllFilters);
+  
+  const minPrice = totalNumbers !== undefined ? totalNumbers[0] : 0;
+  const maxPrice = totalNumbers !== undefined ? totalNumbers[totalNumbers.length - 1] : 100;
+
+  const [minValue, setMinValue] = useState(minPrice);
+  const [maxValue, setMaxValue] = useState(maxPrice);
+
+  const [sliderValue1, setSliderValue1] = useState(minPrice);
+  const [sliderValue2, setSliderValue2] = useState(maxPrice);
+  
 
   useEffect(() =>{
     totalFilters.forEach((item) => {
@@ -28,6 +38,39 @@ const AppFilter: FC<AppFilterProps> = ({ type, name, title, totalItems, totalNum
 
   }, [totalFilters]);
 
+  //  for slider filter
+  function changeMinMaxValues (currentValue: number, setSlider: Function, anotherSliderValue: number ) {
+    setSlider(currentValue);
+    if (currentValue < anotherSliderValue) {
+      setMinValue(currentValue);
+    } else if (currentValue > anotherSliderValue) {
+      setMaxValue(currentValue);
+    } else {
+      setMinValue(currentValue);
+      setMaxValue(currentValue);
+    }
+    if ((currentValue !== minPrice && currentValue !== maxPrice) ||
+    (anotherSliderValue !== minPrice && anotherSliderValue !== maxPrice) ) {
+      const minValue = currentValue < anotherSliderValue ? currentValue : anotherSliderValue;
+      const maxValue = currentValue > anotherSliderValue ? currentValue : anotherSliderValue;
+      dispatch(filtersActions.addFilter({
+        type: type,
+        name: name,
+        minValue: minValue,
+        maxValue: maxValue,
+      }));
+      searchParams.set(name, `${minValue}-${maxValue}`);      
+    } else {
+      dispatch(filtersActions.removeFilter({
+        type: type,
+        name: name,        
+      }));
+      searchParams.delete(name);
+    }
+    setsearchParams(searchParams);
+  }
+
+  //  for list filter
   function toogleToActive (id: number) { 
       if (activeItems.includes(id)) {
         const newActiveItems = [...activeItems.filter((item) => item !== id)];
@@ -50,9 +93,9 @@ const AppFilter: FC<AppFilterProps> = ({ type, name, title, totalItems, totalNum
           type: type,
           name: name,
           values: [id]
-        }));      
+        }));
         searchParams.set(name, String(newActiveItems.join('-')));
-        setsearchParams(searchParams);        
+        setsearchParams(searchParams);
       }
     }
 
@@ -70,6 +113,48 @@ const AppFilter: FC<AppFilterProps> = ({ type, name, title, totalItems, totalNum
   return (
     <div className="filter__header">
       <h1>{title}</h1>
+      {type === "slider" && (
+        <div>
+          <div className="filter__wrapper-slider" role="group">
+            <input
+              type="range"
+              value={sliderValue1}
+              min={minPrice}
+              max={maxPrice}
+              onChange={(event) =>
+                changeMinMaxValues(
+                  +event.target.value,
+                  setSliderValue1,
+                  sliderValue2
+                )
+              }
+            />
+            <input
+              type="range"
+              value={sliderValue2}
+              min={minPrice}
+              max={maxPrice}
+              onChange={(event) =>
+                changeMinMaxValues(
+                  +event.target.value,
+                  setSliderValue2,
+                  sliderValue1
+                )
+              }
+            />
+          </div>
+          <div className="filter__slider-info">
+            <div>
+              {name === "price" ? "$" : ""}
+              {minValue}
+            </div>
+            <div>
+              {name === "price" ? "$" : ""}
+              {maxValue}
+            </div>
+          </div>
+        </div>
+      )}
       {type === "list" && (
         <ul>
           <li
