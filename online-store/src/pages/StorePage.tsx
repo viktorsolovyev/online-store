@@ -26,7 +26,7 @@ const StorePage = () => {
   const [sortBy, setSortBy] = useState('');
   const [isRow, setIsRow] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
-  const [searchQuery] = useSearchParams();
+  const [searchQuery, setSearchQuery] = useSearchParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -93,6 +93,8 @@ const StorePage = () => {
       copy = copy.filter(
         (item) =>
           item.title.toLowerCase().includes(search.toLowerCase()) ||
+          item.category.toLowerCase().includes(search.toLowerCase()) ||
+          item.brand.toLowerCase().includes(search.toLowerCase()) ||
           item.price.toString().includes(search) ||
           getPriceSale(item.price, item.sale).toString().includes(search) ||
           item.sale.toString().includes(search) ||
@@ -104,6 +106,26 @@ const StorePage = () => {
     return copy;
   },[totalProducts, sortBy, totalFilters, search]);
 
+  function clearAllFilters() {
+    if (search) {
+      dispatch(changeSearch(""));
+      if (searchQuery.get("search")) {
+        searchQuery.delete("search");
+        setSearchQuery(searchQuery);
+      }
+    }
+    if (totalFilters.length) {
+      const activeFilters = totalFilters.slice();
+      activeFilters.forEach((filter) => {
+        dispatch(filtersActions.removeFilter(filter));
+        if (searchQuery.get(filter.name)) {
+          searchQuery.delete(filter.name);
+          setSearchQuery(searchQuery);
+        }        
+      });
+    }
+  };
+
   return (
     <div className="container store__container">
         <aside className="filters">
@@ -111,6 +133,7 @@ const StorePage = () => {
           <AppFilter type="list" name="brand" title="Brand" totalItems={totalBrands} />
           <AppFilter type="slider" name="price" title="Price" totalNumbers={totalPrices} />
           <AppFilter type="slider" name="stock" title="Stock" totalNumbers={totalStocks} />
+          <button onClick={clearAllFilters} className="btn filters__clear-filters">Clear filters</button>
         </aside>
         <div className="products__container">
           <ProductsSettings 

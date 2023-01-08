@@ -1,5 +1,6 @@
 export type IProduct = {
     id: number,
+    category: string,
     categoryId: number,
     image: string,
     gallery: string[],

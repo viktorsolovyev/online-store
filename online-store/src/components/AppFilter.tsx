@@ -44,6 +44,18 @@ const AppFilter: FC<AppFilterProps> = ({ type, name, title, totalItems, totalNum
       }      
     });
 
+    if (totalFilters.length === 0) {
+      if (type === "list") {
+        setactiveItems([]);
+      }
+      if (type === "slider") {
+        setMinValue(minPrice);
+        setMaxValue(maxPrice);
+        setSliderValue1(minPrice);
+        setSliderValue2(maxPrice);
+      }
+    }
+
   }, [totalFilters]);
 
   //  for slider filter
