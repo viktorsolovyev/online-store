@@ -30,11 +30,6 @@ const StorePage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-
-    if (!searchQuery.get('category')) {
-      clearAllFilters();
-    }
-
     if (searchQuery.get('isRow')) {
       const listType = searchQuery.get('isRow') === 'true' ? true : false;
       setIsRow(listType);
@@ -45,7 +40,6 @@ const StorePage = () => {
         setSortBy(sortType);
       };
     }
-
     availableFilters.forEach((item) => {
       if (searchQuery.get(item.name)) {
         const filterValues = searchQuery.get(item.name)?.split('-').map((i) => +i);
@@ -56,8 +50,7 @@ const StorePage = () => {
             values: filterValues,
             minValue: filterValues[0],
             maxValue: filterValues[1],
-          }));  
-  
+          }));
       }
     });
     const search = searchQuery.get('search');
@@ -131,12 +124,6 @@ const StorePage = () => {
       });
     }
   };
-
-  // useEffect(() =>{
-  //   return (
-  //     console.log('q')
-  //   )
-  // }, [])
 
   return (
     <div className="container store__container">
