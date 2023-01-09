@@ -11,9 +11,11 @@ interface ProductSettingsProps {
   setModalIsOpen: Function,
   sortBy: string,
   setSortBy: Function,
+  setFiltersOpen: Function,
+  filtersOpen: boolean,
 }
 
-const ProductsSettings:FC <ProductSettingsProps> = ({amount, setIsRow, isRow, modalOpen, setModalIsOpen, sortBy, setSortBy}) => {
+const ProductsSettings:FC <ProductSettingsProps> = ({amount, setIsRow, isRow, modalOpen, setModalIsOpen, sortBy, setSortBy, setFiltersOpen, filtersOpen}) => {
 
   const [searchQuery, setSearchQuery] = useSearchParams();
 
@@ -23,12 +25,23 @@ const ProductsSettings:FC <ProductSettingsProps> = ({amount, setIsRow, isRow, mo
     setIsRow(!isRow);
   }
 
+  const handleFilters = () => {
+    setModalIsOpen(false);
+    setFiltersOpen(!filtersOpen)
+  }
+
+  const handleModal = () => {
+    setFiltersOpen(false);
+    setModalIsOpen(!modalOpen);
+  }
+
   return (
     <div className="products__settings">
         <h3 className="products__found">Found: {amount}</h3>
         <div className="product__sort-items">
+        <button onClick={handleFilters} className="products__settings-filters">Filters</button>
         <div className='products__settings-sort-wrapper'>
-          <button onClick={() => setModalIsOpen(!modalOpen)} className="products__settings-sort">Select sort</button>
+          <button onClick={handleModal} className="products__settings-sort">Select sort</button>
           <DropdownModal setModalIsOpen={setModalIsOpen} sortBy={sortBy} setSortBy={setSortBy} modalOpen={modalOpen}/>
         </div>
         <button onClick={changeRow} className="products__settings-switcher">

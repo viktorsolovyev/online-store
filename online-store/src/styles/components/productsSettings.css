@@ -27,6 +27,13 @@
     align-items: center;
 }
 
+.products__settings-filters {
+    display: none;
+    font-size: 22px;
+    line-height: 26px;
+    background-color: transparent;
+}
+
 .products__settings-sort::after {
     content: '';
     display: block;
@@ -83,12 +90,22 @@
     background: #F6F5EF;
 }
 
+@media (max-width: 834px) {
+    .products__settings-filters {
+        display: block;
+    }
+}
+
 @media (max-width: 567px) {
     .products__found {
         font-size: 3.88vw;
         line-height: 4.59vw;
     }
     .products__settings-sort {
+        font-size: 3.88vw;
+        line-height: 4.59vw;
+    }
+    .products__settings-filters {
         font-size: 3.88vw;
         line-height: 4.59vw;
     }

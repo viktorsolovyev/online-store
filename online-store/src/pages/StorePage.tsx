@@ -26,6 +26,7 @@ const StorePage = () => {
   const [sortBy, setSortBy] = useState('');
   const [isRow, setIsRow] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
+  const [filtersOpen, setFiltersOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useSearchParams();
   const dispatch = useDispatch();
 
@@ -132,15 +133,9 @@ const StorePage = () => {
     }
   };
 
-  // useEffect(() =>{
-  //   return (
-  //     console.log('q')
-  //   )
-  // }, [])
-
   return (
     <div className="container store__container">
-        <aside className="filters">
+        <aside className={filtersOpen ? 'filters filters_active' : 'filters'}>
           <AppFilter type="list" name="category" title="Category" totalItems={totalCategories} />
           <AppFilter type="list" name="brand" title="Brand" totalItems={totalBrands} />
           <AppFilter type="slider" name="price" title="Price" totalNumbers={totalPrices} />
@@ -156,6 +151,8 @@ const StorePage = () => {
             amount={sortedProducts.length}
             sortBy={sortBy}
             setSortBy={setSortBy}
+            filtersOpen={filtersOpen}
+            setFiltersOpen={setFiltersOpen}
           />
           <ProductsList totalProducts={sortedProducts} isRow={isRow}/>
         </div>

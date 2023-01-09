@@ -86,3 +86,24 @@ input[type='range']::-moz-range-thumb {
     width: 16px;
     height: 16px;
 }
+
+@media (max-width: 576px) {
+    .filter__header {
+        font-size: 4.17vw;
+        line-height: 4.86vw;
+        margin-bottom: 3.47vw;
+    }
+    .filter__header h1 {
+        margin-bottom: 2.60vw;
+    }
+    .filter-item {
+        font-size: 3.47vw;  
+        margin-bottom: 0.87vw;
+    }
+    .filter__wrapper-slider {
+        grid-template-rows: none;
+    }
+    .filter__slider-info {
+        font-size: 3.13vw;
+    }
+}
