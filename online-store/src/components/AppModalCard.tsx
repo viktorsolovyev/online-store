@@ -55,8 +55,8 @@ const AppModalCard: FC <AppModalCardProps> = ({cardSystem, formData, formErrors,
   }
 
   function changeCardCVV(e: ChangeEvent<HTMLInputElement>) {
-    const value = e.target.value;
-    if ((!+value && value.length > 0) || value.length > 3) return;
+    const value = e.target.value;    
+    if ((!+value && value.length > 0) || value.length > 3 || value.indexOf('.') >= 0) return;
     setFormData({...formData, CVV: value});
   }
 
