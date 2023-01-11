@@ -18,7 +18,7 @@ const AppModalCard: FC <AppModalCardProps> = ({cardSystem, formData, formErrors,
   function changeCard(e: ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
 
-    if (value.length >= 20 || (!+value.split(' ').join('') && value.length > 0)) return;
+    if (value.length >= 20 || (!+value.split(' ').join('') && value.length > 0) || value.indexOf('.') >= 0) return;
 
     if (e.target.value.length === 1) setCardSystem(getCardSystem(value));
 
