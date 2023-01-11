@@ -1,7 +1,9 @@
 import '../styles/components/cartTotalPrice.css';
 import { FC, useState } from "react"
-import { IPromo } from '../types/types';
+import { useSelector } from 'react-redux';
+import { IPromo, ICart } from '../types/types';
 import CartPromo from './CartPromo';
+import { RootState } from "../../src/app/store";
 
 interface CartTotalPriceProps {
   totalPrice: number,
@@ -15,6 +17,9 @@ const CartTotalPrice: FC<CartTotalPriceProps> = ({setTotalSale, totalPrice, tota
 
   const isSale = totalSale > 0;
   const [activePromos, setActivePromos] = useState<IPromo[]>([]);
+  const totalAmount: number = useSelector((state: RootState) => {
+    return state.cart.cart.reduce((sum: number, item: ICart) => (sum += item.amount), 0);
+  });
 
   function totalPriceWithSale() {
     return totalPrice - totalSale;
@@ -37,6 +42,10 @@ const CartTotalPrice: FC<CartTotalPriceProps> = ({setTotalSale, totalPrice, tota
             </div>
           : <div className='cart__total-price'>${totalPrice}</div>
           }
+        </li>
+        <li className='cart__total-item'>
+          <div className='cart__total-info'>Amount</div>
+          <div className='cart__total-price'>{totalAmount}</div>
         </li>
         <li className='cart__total-item'>
           <div className='cart__total-info'>Shipping</div>
