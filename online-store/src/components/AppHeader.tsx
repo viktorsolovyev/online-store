@@ -21,7 +21,7 @@ const AppHeader = () => {
 
   useMemo(() => {
     let priceCounter = 0;
-    totalCart.map((item) => priceCounter += getPriceSale(item.price, item.sale) * item.amount);
+    totalCart.map((item) => priceCounter += getPriceSale(item.price * item.amount, item.sale));
     setTotalPrice(priceCounter + config.shiping);
   }, [totalCart])
 
@@ -56,7 +56,7 @@ const AppHeader = () => {
         <div className='header__cart'>
         {totalAmount > 0 && (
           <div className='header__cart-price'>
-          Cart Total: €{totalPrice}
+          Cart Total: ${totalPrice}
           </div>
         )}
           <Link to="/cart" className="header__cart-icon">

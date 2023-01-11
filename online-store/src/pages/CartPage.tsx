@@ -11,6 +11,7 @@ import AppModal from '../components/AppModal';
 import { isCartOpen } from '../app/feautures/modalSlice';
 import { toggleModal } from '../app/feautures/modalSlice';
 import { config } from '../data/config';
+import { getSaleInCurrency } from "../helpers/getSalePrice";
 
 const CartPage = () => {
 
@@ -41,6 +42,12 @@ const CartPage = () => {
     let priceCounter = 0;
     totalCart.map((item) => priceCounter += item.price * item.amount);
     setTotalPrice(priceCounter);
+  }, [totalCart])
+
+  useMemo(() => {
+    let saleCounter = 0;
+    totalCart.map((item) => saleCounter += getSaleInCurrency(item.price * item.amount, item.sale));
+    setTotalSale(saleCounter);
   }, [totalCart])
 
   useMemo(() => {

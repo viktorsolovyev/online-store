@@ -1,6 +1,5 @@
 import '../styles/components/cartTotalPrice.css';
 import { FC, useState } from "react"
-import { getPriceSale } from '../helpers/getSalePrice';
 import { IPromo } from '../types/types';
 import CartPromo from './CartPromo';
 
@@ -18,7 +17,7 @@ const CartTotalPrice: FC<CartTotalPriceProps> = ({setTotalSale, totalPrice, tota
   const [activePromos, setActivePromos] = useState<IPromo[]>([]);
 
   function totalPriceWithSale() {
-    return getPriceSale(totalPrice, totalSale);
+    return totalPrice - totalSale;
   }
 
   return (
