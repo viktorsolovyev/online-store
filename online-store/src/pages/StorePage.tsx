@@ -29,6 +29,7 @@ const StorePage = () => {
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useSearchParams();
   const dispatch = useDispatch();
+  const [copyLinkText, setcopyLinkText] = useState("Copy link");
 
   useEffect(() => {
     if (searchQuery.get('isRow')) {
@@ -126,14 +127,21 @@ const StorePage = () => {
     }
   };
 
+  function copyLink() {    
+    navigator.clipboard.writeText(window.location.href);
+    setcopyLinkText('Copied!');
+    setTimeout(() => setcopyLinkText('Copy link'), 1000);
+  };
+
   return (
     <div className="container store__container">
-        <aside className={filtersOpen ? 'filters filters_active' : 'filters'}>
+        <aside className={filtersOpen ? 'filters filters_active' : 'filters'}>          
           <AppFilter type="list" name="category" title="Category" totalItems={totalCategories} />
           <AppFilter type="list" name="brand" title="Brand" totalItems={totalBrands} />
           <AppFilter type="slider" name="price" title="Price" totalNumbers={totalPrices} />
           <AppFilter type="slider" name="stock" title="Stock" totalNumbers={totalStocks} />
-          <button onClick={clearAllFilters} className="btn filters__clear-filters">Clear filters</button>
+          <button onClick={clearAllFilters} className="btn filters__btn">Clear filters</button>
+          <button onClick={copyLink} className="btn filters__btn">{copyLinkText}</button>
         </aside>
         <div className="products__container">
           <ProductsSettings 
