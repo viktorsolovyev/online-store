@@ -61,11 +61,11 @@ const AppModalForm:FC <AppModalFormProps> = ({setOrderAccepted, clearCart}) => {
     const cardMonth = formData.date[0] + formData.date[1];
     const cardYear = formData.date[3] + formData.date[4];
 
-    findErrors.email = (/[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]{2,3}/.test(formData.email)) ? false : true;
+    findErrors.email = (/^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu.test(formData.email)) ? false : true;
     findErrors.firstname = (/[a-zA-Z]{3,20}/.test(formData.firstname)) ? false : true;
     findErrors.lastname = (/[a-zA-Z]{3,20}/.test(formData.lastname)) ? false : true;
     findErrors.number = (/\+[0-9]{9,20}/.test(formData.number)) ?  false : true;
-    findErrors.address = (formData.address.split(' ').length >= 3) ? false : true;
+    findErrors.address = (formData.address.split(' ').length >= 3 && formData.address.split(' ').find((item) => item.length < 5) === undefined) ? false : true;
     findErrors.cardNumber = (formData.cardNumber.length === 19) ? false : true;
     findErrors.CVV = (formData.CVV.length === 3) ? false : true;
     findErrors.date = +cardMonth > 12 || +cardMonth < 1 || !+cardMonth || !+cardYear;
