@@ -10,19 +10,14 @@ import CartHeaderInfo from '../components/CartHeaderInfo';
 import AppModal from '../components/AppModal';
 import { isCartOpen } from '../app/feautures/modalSlice';
 import { toggleModal } from '../app/feautures/modalSlice';
+import { config } from '../data/config';
 
 const CartPage = () => {
 
   const dispatch = useDispatch();
   const totalCart = useSelector(getTotalCart);
   const isOpen = useSelector(isCartOpen);
-  
   const [searchQuery] = useSearchParams();
-
-  const config = {
-    shiping: 8,
-  }
-
   const [perPage, setPerPage] = useState(2);
   const [totalPages, setTotalPages] = useState(Math.ceil(totalCart.length / perPage));
   const [currentPage, setCurrentPage] = useState(1);

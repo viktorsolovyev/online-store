@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { ICart } from "../types/types";
 import { getSearch, changeSearch } from "../app/feautures/searchSlice";
 import { getTotalCart } from '../app/feautures/cartSlice';
+import { getPriceSale } from "../helpers/getSalePrice";
+import { config } from '../data/config';
 
 const AppHeader = () => {
   const dispatch = useDispatch();
@@ -19,8 +21,8 @@ const AppHeader = () => {
 
   useMemo(() => {
     let priceCounter = 0;
-    totalCart.map((item) => priceCounter += item.price * item.amount);
-    setTotalPrice(priceCounter);
+    totalCart.map((item) => priceCounter += getPriceSale(item.price, item.sale) * item.amount);
+    setTotalPrice(priceCounter + config.shiping);
   }, [totalCart])
 
   const searchHandler = (e: React.FormEvent<HTMLInputElement>) => {
