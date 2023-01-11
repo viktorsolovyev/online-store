@@ -22,6 +22,11 @@
     flex-direction: column;
 }
 
+.products__not-found {
+    font-size: 26px;
+    text-align: center;
+}
+
 .filters {
     width: 100%;
     max-width: 20.83vw;

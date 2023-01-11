@@ -156,6 +156,12 @@ const StorePage = () => {
             setFiltersOpen={setFiltersOpen}
           />
           <ProductsList totalProducts={sortedProducts} isRow={isRow}/>
+          {sortedProducts.length === 0 
+          ? <div className="products__not-found">
+              We didn't find your product :(                          
+          </div>
+          : ""
+        }
         </div>
     </div>
   )
