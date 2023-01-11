@@ -36,10 +36,12 @@ const cartSlice = createSlice({
     addAmount(state, action: PayloadAction<Number>) {
       const item = state.cart.find(cartItem => cartItem.id === action.payload);
       if (item && item.amount < item.stock) item.amount += 1;
+      localStorage.setItem('cart', JSON.stringify(state.cart));
     },
     removeAmount(state, action: PayloadAction<Number>) {
       const item = state.cart.find(cartItem => cartItem.id === action.payload);
       if (item) item.amount -= 1;
+      localStorage.setItem('cart', JSON.stringify(state.cart));
     },
     clearCart(state) {
       state.cart = [];
