@@ -41,7 +41,7 @@ const AppModalCard: FC <AppModalCardProps> = ({cardSystem, formData, formErrors,
 
   function changeCardDate(e: ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
-    if (value.length > 5) return;
+    if (value.length > 5 || value.indexOf('.') >= 0) return;
     
     if (value.length > formData.date.length) {
       if (value.length === 2) {
