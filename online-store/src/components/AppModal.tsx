@@ -37,7 +37,11 @@ const AppModal:FC <AppModalProps>= ({isOpen, orderAccepted, setIsOpen, setOrderA
   }, [orderAccepted])
 
   return (  
-    <div onClick={!orderAccepted ? closeModal : undefined} className={isOpen ? 'modal modal_active' : 'modal'}>
+    <div 
+      onClick={!orderAccepted ? closeModal : undefined}
+      className={isOpen ? 'modal modal_active' : 'modal'}
+      data-testid={isOpen ? 'appModal' : ''}
+    >
       {!orderAccepted 
       ?
       <AppModalForm
@@ -45,7 +49,11 @@ const AppModal:FC <AppModalProps>= ({isOpen, orderAccepted, setIsOpen, setOrderA
         setOrderAccepted={setOrderAccepted}
       />
       :
-      <div onClick={(e) => e.stopPropagation()} className='modal__content modal__content_order'>
+      <div 
+        data-testid={orderAccepted ? 'appModalAccepted' : ''}
+        onClick={(e) => e.stopPropagation()}
+        className='modal__content modal__content_order'
+      >
         <h2 className='modal__content-heading'>Thanks for your order!</h2>
         <p className='modal__content-description'>You will be redirected to the main page in a few seconds...</p>
       </div>

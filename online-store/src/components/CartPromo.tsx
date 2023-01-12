@@ -46,7 +46,7 @@ const CartPromo:FC<CartPromoProps> = ({totalSale, activePromos, setActivePromos,
   }
 
   return (
-    <form className='cart__total-promo' action="#">
+    <form data-testid="promo" className='cart__total-promo' action="#">
       {activePromos.length > 0
       ? 
         <ul className='cart__total-promo-active'>
@@ -63,7 +63,7 @@ const CartPromo:FC<CartPromoProps> = ({totalSale, activePromos, setActivePromos,
       {findPromo
       ?
         <div className='cart__total-finded'>
-          <h3 className='cart__total-finded-heading'>Promocode: {findPromo.body} - {findPromo.sale}%</h3>
+          <h3 data-testid="findedPromo" className='cart__total-finded-heading'>Promocode: {findPromo.body} - {findPromo.sale}%</h3>
           {!isAdded(findPromo.name)
             ? <button className='cart__total-finded-btn btn' onClick={(e) => addPromo(e)}>Add</button>
             : ''

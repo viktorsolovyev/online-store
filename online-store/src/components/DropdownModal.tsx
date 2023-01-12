@@ -59,7 +59,7 @@ const DropdownModal: FC<DropdownModalProps> = ({setModalIsOpen, modalOpen, sortB
   }
 
   return (
-    <ul onClick={(e) => e.stopPropagation()} className={modalOpen ? 'products__setting-modal products__setting-modal_active' : 'products__setting-modal'}>
+    <ul data-testid={modalOpen ? 'dropdownModal' : ''} onClick={(e) => e.stopPropagation()} className={modalOpen ? 'products__setting-modal products__setting-modal_active' : 'products__setting-modal'}>
       {sortTypes.map(sort => 
         <li 
           key={sort.id}
