@@ -1,0 +1,109 @@
+.filter__header {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    margin-bottom: 20px;
+}
+
+.filter__header h1{
+    margin-bottom: 15px;
+}
+
+.filter-item {
+    width: fit-content; 
+    font-size: 20px;
+    color: rgba(28, 28, 28, 0.5);
+    margin-bottom: 5px;
+}
+
+.filter-item:hover {
+    cursor: pointer;
+    user-select: none;
+}
+
+.filter-item-active {
+    color: #1C1C1C;
+}
+
+.filter__wrapper-slider {
+    display: grid;
+    grid-template-rows: max-content 1em;
+    width: 90%;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(#FFFFFF 23%, #1C1C1C 23% 37%, #FFFFFF 37% 100%);
+   /* emulate track with wrapper background */
+}
+.filter__slider-info {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+}
+
+input[type='range'] {
+    grid-column: 1;
+    grid-row: 2;
+    background: none;
+    color: #1C1C1C;
+    font: inherit;
+    margin: 0;
+    pointer-events: none;
+    cursor: pointer;
+}
+input[type='range']::-webkit-slider-runnable-track, 
+input[type='range']::-webkit-slider-thumb, 
+input[type='range'] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+input[type='range']::-webkit-slider-runnable-track {
+    background: none;
+    height: 100%;
+    width: 100%;
+}
+input[type='range']::-moz-range-track {
+    background: none;
+    height: 100%;
+    width: 100%;
+}
+input[type='range']::-webkit-slider-thumb {
+    background: currentcolor;
+    border: none;
+    border-radius: 50%;
+    pointer-events: auto;
+    width: 16px;
+    height: 16px;
+}
+input[type='range']::-moz-range-thumb {
+    background: currentcolor;
+    border: none;
+   /* get rid of Firefox thumb border */
+    border-radius: 50%;
+   /* get rid of Firefox corner rounding */
+    pointer-events: auto;
+   /* catch clicks */
+    width: 16px;
+    height: 16px;
+}
+
+@media (max-width: 576px) {
+    .filter__header {
+        font-size: 4.17vw;
+        line-height: 4.86vw;
+        margin-bottom: 3.47vw;
+    }
+    .filter__header h1 {
+        margin-bottom: 2.60vw;
+    }
+    .filter-item {
+        font-size: 3.47vw;  
+        margin-bottom: 0.87vw;
+    }
+    .filter__wrapper-slider {
+        grid-template-rows: none;
+    }
+    .filter__slider-info {
+        font-size: 3.13vw;
+    }
+}

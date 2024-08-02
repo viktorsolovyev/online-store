@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Roboto:wght@300;400;500;700;900&display=swap');
+
+* {
+    font-family: Roboto;
+    color: #1C1C1C;
+}
+
+body {
+    background-color: #F7F6F0;
+}
+
+main {
+    padding-top: 45px;
+    padding-bottom: 45px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 88.54vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn {
+    padding: 11px 38px;
+    font-size: 22px;
+    line-height: 26px;
+    color: #FFFFFF;
+    background: #1C1C1C;
+    border-radius: 25px;
+    border: solid 1px transparent;
+    transition-property: background, border, color;
+    transition-timing-function: ease;
+    transition-duration: .4s;
+}
+
+.btn:hover {
+    color: #1C1C1C;
+    border: solid 1px #1C1C1C;
+    background: transparent;
+}
+
+.input {
+    width: 100%;
+    padding: 15px;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.input-small {
+    max-width: 238px;
+}
+
+.error-message {
+    font-size: 34px;
+    line-height: 40px;
+}
+
+@media (max-width: 1325px)  {
+    .container {
+        max-width: 88.60vw; /* 1325px */
+    }
+}
+
+@media (max-width: 576px) {
+    main {
+        padding-top: 7.94vw;
+    }
+    .btn {
+        padding: 1.91vw 6.60vw;
+        font-size: 3.82vw;
+        line-height: 4.51vw;
+        border-radius: 4.34vw;
+    }
+    .input {
+        padding: 2.65vw;
+        font-size: 3.17vw;
+        line-height: 3.70vw;
+        border-radius: 0.71vw;
+    }
+}

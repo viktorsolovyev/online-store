@@ -1,0 +1,135 @@
+.cart__item-content {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.cart__item-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
+}
+
+.cart__item-heading {
+  font-size: 22px;
+  line-height: 26px;
+}
+
+.cart__item-info {
+  margin-top: 5px;
+}
+
+.cart__item-description {
+  max-width: 162px;
+  margin-top: 7px;
+  font-size: 16px;
+  line-height: 19px;
+  color: rgba(28, 28, 28, 0.6);
+}
+
+.cart__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px 0px;
+  border-bottom: solid 1px rgba(28, 28, 28, 0.2);;
+}
+
+.cart__item-index {
+  margin-bottom: 3px;
+  color: rgba(28, 28, 28, 0.6);
+}
+
+.cart__item-amount {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 20px;
+  padding: 5px 15px;
+  gap: 20px;
+  border: 1px solid #1C1C1C;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.cart__item-amount button {
+  font-size: 16px;
+  line-height: 19px;
+  background: transparent;
+}
+
+.cart__item-remove {
+  margin-top: 7px;
+  font-size: 16px;
+  line-height: 19px;
+  text-transform: uppercase;
+  color: #F27D23;
+  background: transparent;
+}
+
+.cart__item-price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+@media (max-width: 800px) {
+  .cart__item {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .cart__item-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .cart__item-price {
+    align-items: flex-start;
+    margin-top: 30px;
+  }
+  .cart__item-image {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 567px) {
+  .cart__item {
+    padding: 4.41vw 0px;
+  }
+  .cart__item-content {
+    gap: 5.29vw;
+  }
+  .cart__item-heading {
+    font-size: 3.88vw;
+    line-height: 4.59vw;
+  }
+  .cart__item-description {
+    max-width: 28.57vw;
+    margin-top: 0.88vw;
+    font-size: 2.82vw;
+    line-height: 3.35vw;
+  }
+  .cart__item-index {
+    font-size: 2.47vw;
+    margin-bottom: 0.53vw;
+  }
+  .cart__item-amount {
+    margin-top: 3.53vw;
+    padding: 0.88vw 2.65vw;
+    gap: 3.53vw;
+    font-size: 2.82vw;
+    line-height: 3.35vw;
+  }
+  .cart__item-amount button {
+    font-size: 2.82vw;
+    line-height: 3.35vw;
+  }
+  .cart__item-price {
+    margin-top: 5.29vw;
+  }
+  .cart__item-remove {
+    margin-top: 1.23vw;
+    font-size: 2.82vw;
+    line-height: 3.35vw;
+  }
+}
